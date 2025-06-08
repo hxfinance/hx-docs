@@ -38,33 +38,24 @@ This generates a static site in the `out` directory.
 
 ## 🚀 Deployment
 
-The documentation is automatically deployed when changes are pushed to the main branch.
+The documentation is automatically deployed to GitHub Pages when changes are pushed to the main branch.
+
+### GitHub Pages Setup
+
+1. Go to Settings → Pages in the repository
+2. GitHub Actions should already be selected as the source
+3. The site will be available at: `https://hxfinance.github.io/docs/`
 
 ### Manual Deployment
 
-To deploy manually using http-server:
+To deploy manually:
 
 ```bash
 # Build the site
 npm run build
 
-# Serve the static files
-cd out
-npx http-server -p 8080
-```
-
-### Server Setup
-
-For production deployment on your server:
-
-1. Clone this repository
-2. The `out` folder contains the pre-built static site
-3. Serve it with any static file server (nginx, apache, http-server, etc.)
-
-Example with http-server:
-```bash
-cd /root/hx_docs
-npx http-server -p 8080 -a 0.0.0.0 --cors
+# The output will be in the 'out' directory
+# This can be served with any static file server
 ```
 
 ## 📝 Content Structure
