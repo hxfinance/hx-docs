@@ -1,0 +1,46 @@
+name: Simple Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Deploy to server
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: 64.225.64.129
+        username: root
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          # Clone or pull the latest docs
+          if [ -d "/root/hx_docs_source" ]; then
+            cd /root/hx_docs_source
+            git pull origin main
+          else
+            cd /root
+            git clone https://github.com/hxfinance/docs.git hx_docs_source
+          fi
+          
+          # Copy the pre-built out folder to serving directory
+          rm -rf /root/hx_docs/*
+          cp -r /root/hx_docs_source/out/* /root/hx_docs/
+          
+          # Set permissions
+          chmod -R 755 /root/hx_docs
+          
+          # Kill existing http-server if running
+          pkill -f "http-server.*hx_docs" || true
+          
+          # Start http-server in background
+          cd /root/hx_docs
+          nohup npx http-server -p 8080 -a 0.0.0.0 --cors > /root/hx_docs_server.log 2>&1 &
+          
+          echo "Documentation deployed and serving on port 8080"
