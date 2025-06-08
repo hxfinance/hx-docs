@@ -1,0 +1,226 @@
+# How to Swap Tokens
+
+This comprehensive guide covers everything you need to know about swapping tokens on hx.finance.
+
+## Swap Interface Overview
+
+The hx.finance swap interface is designed for simplicity and efficiency:
+
+- **Token Selectors**: Choose your input and output tokens
+- **Amount Fields**: Enter how much to swap
+- **Price Display**: Real-time exchange rates
+- **Details Panel**: Transaction breakdown
+
+## Types of Swaps
+
+### Direct Swaps
+Most common type - swapping between two tokens that have a direct pool:
+- WHYPE ↔ USDE
+- UETH ↔ USDE
+- UBTC ↔ USDE
+
+### Multi-Hop Swaps
+Automatically routes through multiple pools for best price:
+- UETH → USDE → UBTC
+- The router finds the most efficient path
+
+## Detailed Swap Process
+
+### Step 1: Token Selection
+
+**Selecting "From" Token**
+- Click the top token button
+- Search by name or symbol
+- View your balance
+- Recently used tokens appear first
+
+**Selecting "To" Token**
+- Click the bottom token button
+- Only pairs with liquidity shown
+- Sort by volume or TVL
+
+### Step 2: Entering Amounts
+
+**Option A: Exact Input**
+- Enter amount in top field
+- Output auto-calculates
+- Shows "Max" button for full balance
+
+**Option B: Exact Output**
+- Enter desired amount in bottom field
+- Input amount auto-calculates
+- Useful for specific purchase amounts
+
+### Step 3: Price Information
+
+**Exchange Rate**
+- Shows current rate (e.g., 1 WHYPE = 50.25 USDE)
+- Click to invert display
+- Updates in real-time
+
+**Price Impact**
+- Percentage the price moves due to your trade
+- Green: < 0.1% (Excellent)
+- Yellow: 0.1% - 1% (Normal)
+- Orange: 1% - 3% (High)
+- Red: > 3% (Warning)
+
+### Step 4: Transaction Details
+
+**Minimum Received**
+- Accounts for slippage tolerance
+- Guarantees you get at least this amount
+- Transaction fails if price moves too much
+
+**LP Fee**
+- 0.05% - Stable pairs
+- 0.3% - Most pairs
+- 1% - Exotic pairs
+
+**Route**
+- Shows the path your swap takes
+- Direct or through intermediary tokens
+
+## Advanced Features
+
+### Slippage Protection
+
+Access via the ⚙️ settings icon:
+
+**Auto Slippage** (Recommended)
+- Dynamically adjusts based on volatility
+- Prevents failed transactions
+- Optimal for most users
+
+**Custom Slippage**
+- Set your own tolerance
+- 0.1% - 0.5%: Low volatility pairs
+- 0.5% - 1%: Normal pairs
+- 1% - 5%: High volatility
+
+### Transaction Deadline
+
+- Default: 30 minutes
+- Prevents hanging transactions
+- Adjust for volatile conditions
+
+### Expert Mode
+
+Enable for:
+- No confirmation popups
+- High slippage warnings disabled
+- Faster trading flow
+- ⚠️ Use with caution
+
+## Swap Strategies
+
+### For Best Prices
+
+1. **Check Price Impact**
+   - Keep under 0.5% for best rates
+   - Split large trades
+
+2. **Time Your Swaps**
+   - Monitor price charts
+   - Set price alerts
+
+3. **Use Liquidity Indicators**
+   - Trade pairs with deep liquidity
+   - Check 24h volume
+
+### For Earning Points
+
+1. **Consistent Trading**
+   - Daily swaps build tier status
+   - Small regular trades > one large trade
+
+2. **Volume Targets**
+   - Track monthly volume
+   - Plan swaps to hit tier thresholds
+
+3. **Efficient Routing**
+   - Direct swaps earn full points
+   - Multi-hop may reduce points
+
+## Real Examples
+
+### Example 1: Small Swap (10 WHYPE → USDE)
+```
+Input: 10 WHYPE
+Rate: 1 WHYPE = 50.25 USDE
+Output: 502.5 USDE
+Price Impact: 0.02%
+LP Fee: 1.51 USDE (0.3%)
+You Receive: 500.99 USDE
+Points Earned: 5.01
+```
+
+### Example 2: Large Swap (1000 WHYPE → USDE)
+```
+Input: 1000 WHYPE
+Rate: 1 WHYPE = 50.15 USDE (slight impact)
+Output: 50,150 USDE
+Price Impact: 0.8%
+LP Fee: 150.45 USDE (0.3%)
+You Receive: 49,999.55 USDE
+Points Earned: 500
+```
+
+### Example 3: Multi-Hop (UETH → UBTC)
+```
+Route: UETH → USDE → UBTC
+Input: 1 UETH
+Step 1: 1 UETH → 3,200 USDE
+Step 2: 3,200 USDE → 0.052 UBTC
+Total Fees: 0.6% (two hops)
+You Receive: 0.0517 UBTC
+```
+
+## Mobile Swapping
+
+Using hx.finance on mobile:
+- Full feature parity with desktop
+- Touch-optimized interface
+- Biometric authentication
+- Push notifications (coming soon)
+
+## Troubleshooting Swaps
+
+### "Insufficient Liquidity"
+- Pool doesn't have enough tokens
+- Try smaller amount
+- Check alternative pairs
+
+### "Cannot Estimate Gas"
+- Network congestion (rare)
+- Try again in a moment
+- Check wallet connection
+
+### "Price Updated"
+- Price moved while confirming
+- New rate shown
+- Accept or reject new price
+
+## Tips for Success
+
+### Do's ✅
+- Start with small test swaps
+- Check price impact always
+- Keep some HYPE for gas
+- Verify token addresses
+- Use bookmarks for safety
+
+### Don'ts ❌
+- Don't ignore high price impact
+- Don't rush large swaps
+- Don't trade unfamiliar tokens
+- Don't share transaction details
+- Don't bypass warnings
+
+## Next Steps
+
+Master these advanced topics:
+- [Understanding Slippage](/docs/trading/slippage)
+- [Advanced Trading Settings](/docs/trading/advanced-settings)
+- [Earning Through Trading](/docs/points-rewards/earning-strategies)
+- [Providing Liquidity](/docs/liquidity/becoming-lp)

@@ -1,0 +1,206 @@
+# Smart Contract Addresses
+
+All hx.finance smart contracts deployed on Hyperliquid (Chain ID: 999).
+
+## Core Contracts
+
+### Uniswap V3 Core
+| Contract | Address | Description |
+|----------|---------|-------------|
+| Factory | `0x5F1339F9D930aD1529113d36FC1D3B8E08e1D9fC` | Creates new pools |
+| Multicall2 | `0xfCe05536Afda95EF09139c1344875B9462E6d061` | Batch transactions |
+
+### Uniswap V3 Periphery
+| Contract | Address | Description |
+|----------|---------|-------------|
+| SwapRouter | `0xD27b073A9B742ba2f92Ed4fB91423a726A06629e` | Execute swaps |
+| NFTDescriptor | `0xc582680fe1efd663Ec7A0764279d650B1C2cA61E` | NFT metadata |
+| NonfungiblePositionManager | `0x9f5BB2f03d47E639d12d5E5f08F08Ef108543E12` | LP positions |
+| QuoterV2 | `0x1694c351d75586b52c5DC78C7573fCe2c4852b57` | Quote swaps |
+
+### Points System
+| Contract | Address | Description |
+|----------|---------|-------------|
+| PointsAdmin | `0xCBee8CAF3395341d2D489f617161a0Ce79f985ca` | Points configuration |
+
+## Token Addresses
+
+### Official Tokens
+| Token | Address | Decimals | Description |
+|-------|---------|----------|-------------|
+| WHYPE | `0x5555555555555555555555555555555555555555` | 18 | Wrapped HYPE |
+| UETH | `0xBe6727B535545C67d5cAa73dEa54865B92CF7907` | 18 | Wrapped ETH |
+| UBTC | `0x9FDBdA0A5e284c32744D2f17Ee5c74B284993463` | 8 | Wrapped BTC |
+| USDE | `0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34` | 18 | Ethena USDe |
+
+## Integration Guide
+
+### For Developers
+
+#### Reading Pool Data
+```javascript
+import { ethers } from 'ethers';
+
+const FACTORY_ABI = [...]; // Factory ABI
+const POOL_ABI = [...];    // Pool ABI
+
+const provider = new ethers.JsonRpcProvider('https://rpc.hyperliquid.xyz/evm');
+const factory = new ethers.Contract(FACTORY_ADDRESS, FACTORY_ABI, provider);
+
+// Get pool address
+const poolAddress = await factory.getPool(TOKEN0, TOKEN1, FEE);
+
+// Read pool data
+const pool = new ethers.Contract(poolAddress, POOL_ABI, provider);
+const slot0 = await pool.slot0();
+const liquidity = await pool.liquidity();
+```
+
+#### Executing Swaps
+```javascript
+const ROUTER_ABI = [...]; // Router ABI
+const router = new ethers.Contract(ROUTER_ADDRESS, ROUTER_ABI, signer);
+
+// Approve tokens first
+await tokenContract.approve(ROUTER_ADDRESS, amountIn);
+
+// Execute swap
+const params = {
+  tokenIn: TOKEN_IN,
+  tokenOut: TOKEN_OUT,
+  fee: 3000, // 0.3%
+  recipient: userAddress,
+  deadline: Math.floor(Date.now() / 1000) + 60 * 20,
+  amountIn: amountIn,
+  amountOutMinimum: 0,
+  sqrtPriceLimitX96: 0
+};
+
+const tx = await router.exactInputSingle(params);
+await tx.wait();
+```
+
+### Subgraph Access
+
+**Endpoint**: `https://api.goldsky.com/api/public/project_cmay1j7dh90w601r2hjv26a5b/subgraphs/moonswap-v3/hyperevm/gn`
+
+#### Example Queries
+
+**Get Pools**
+```graphql
+{
+  pools(first: 10, orderBy: totalValueLockedUSD, orderDirection: desc) {
+    id
+    token0 {
+      symbol
+      decimals
+    }
+    token1 {
+      symbol
+      decimals
+    }
+    feeTier
+    liquidity
+    totalValueLockedUSD
+    volumeUSD
+  }
+}
+```
+
+**Get User Positions**
+```graphql
+{
+  positions(where: {owner: "0xuser..."}) {
+    id
+    liquidity
+    token0 {
+      symbol
+    }
+    token1 {
+      symbol
+    }
+    collectedFeesToken0
+    collectedFeesToken1
+  }
+}
+```
+
+### Contract Verification
+
+All contracts are verified on Hyperliquid Explorer:
+- [Factory](https://explorer.hyperliquid.xyz/address/0x5F1339F9D930aD1529113d36FC1D3B8E08e1D9fC)
+- [SwapRouter](https://explorer.hyperliquid.xyz/address/0xD27b073A9B742ba2f92Ed4fB91423a726A06629e)
+- [PositionManager](https://explorer.hyperliquid.xyz/address/0x9f5BB2f03d47E639d12d5E5f08F08Ef108543E12)
+
+## Security
+
+### Audits
+- Uniswap V3 contracts: Audited by multiple firms
+- Custom contracts: Audit pending
+- Bug bounty program: Coming soon
+
+### Best Practices
+- Always verify contract addresses
+- Check transaction details before signing
+- Use official interfaces when possible
+- Monitor slippage settings
+
+### Emergency Contacts
+- Discord: Emergency support channel
+- Email: security@hx.finance
+- Twitter: @hxfinance
+
+## Network Configuration
+
+### Hyperliquid Mainnet
+```json
+{
+  "chainId": 999,
+  "chainName": "Hyperliquid",
+  "nativeCurrency": {
+    "name": "HYPE",
+    "symbol": "HYPE",
+    "decimals": 18
+  },
+  "rpcUrls": ["https://rpc.hyperliquid.xyz/evm"],
+  "blockExplorerUrls": ["https://explorer.hyperliquid.xyz"]
+}
+```
+
+### Gas Settings
+- Gas Price: Usually 0.1 gwei
+- Gas Limit: Auto-estimated
+- Max fee: Not required (no EIP-1559)
+
+## Contract Interfaces
+
+### Factory Functions
+- `createPool()`: Create new trading pair
+- `getPool()`: Get pool address
+- `feeAmountTickSpacing()`: Get tick spacing
+
+### Router Functions
+- `exactInputSingle()`: Swap exact input
+- `exactOutputSingle()`: Swap exact output
+- `exactInput()`: Multi-hop swap
+
+### Position Manager Functions
+- `mint()`: Create new position
+- `increaseLiquidity()`: Add to position
+- `decreaseLiquidity()`: Remove from position
+- `collect()`: Collect fees
+- `burn()`: Close position
+
+## Version Information
+
+- Uniswap V3 Core: 1.0.0
+- Uniswap V3 Periphery: 1.0.0
+- Custom Contracts: 1.0.0
+- Subgraph: 1.0.0
+
+## Useful Links
+
+- [GitHub Repository](https://github.com/hxfinance)
+- [Contract Documentation](https://docs.hx.finance)
+- [Uniswap V3 Docs](https://docs.uniswap.org/contracts/v3/overview)
+- [Developer Discord](https://discord.gg/hxfinance-dev)
