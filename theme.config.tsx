@@ -9,7 +9,7 @@ const config: DocsThemeConfig = {
   chat: {
     link: 'https://discord.gg/hxfinance',
   },
-  docsRepositoryBase: 'https://github.com/hxfinance/docs/blob/main',
+  docsRepositoryBase: 'https://github.com/hxfinance/hx-docs/blob/main',
   footer: {
     text: '© 2025 hx.finance - Community Owned DEX on Hyperliquid',
   },
