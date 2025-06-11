@@ -7,21 +7,21 @@ All hx.finance smart contracts deployed on Hyperliquid (Chain ID: 999).
 ### Uniswap V3 Core
 | Contract | Address | Description |
 |----------|---------|-------------|
-| Factory | `0x5F1339F9D930aD1529113d36FC1D3B8E08e1D9fC` | Creates new pools |
+| Factory | `0x40730EC6b87B0A06839962BEE669513fe6F20ECF` | Creates new pools |
 | Multicall2 | `0xC41Ff4C0417aB4E3ae562828869CA89d5E1Db604` | Batch transactions |
 
 ### Uniswap V3 Periphery
 | Contract | Address | Description |
 |----------|---------|-------------|
-| SwapRouter | `0xD27b073A9B742ba2f92Ed4fB91423a726A06629e` | Execute swaps |
-| NFTDescriptor | `0xc582680fe1efd663Ec7A0764279d650B1C2cA61E` | NFT metadata |
-| NonfungiblePositionManager | `0x9f5BB2f03d47E639d12d5E5f08F08Ef108543E12` | LP positions |
-| QuoterV2 | `0x1694c351d75586b52c5DC78C7573fCe2c4852b57` | Quote swaps |
+| SwapRouter | `0xEBd14cdF290185Cc4d0b5eC73A0e095d780e5D2f` | Execute swaps |
+| NFTDescriptor | `0xcfDA36424f29e60ea5E0B4eBAd5cA625B3410A79` | NFT metadata |
+| NonfungiblePositionManager | `0xA8FAA918701e15c95A6df24DCA0CFB5Bcb1b44B7` | LP positions |
+| QuoterV2 | `0x1d3e047D96d33fE74aaa16162750ded6d58EB073` | Quote swaps |
 
 ### Points System
 | Contract | Address | Description |
 |----------|---------|-------------|
-| PointsAdmin | `0xCBee8CAF3395341d2D489f617161a0Ce79f985ca` | Points configuration |
+| PointsAdmin | `0x42bE73f3030Fe63d60A5726dE0243f031B0956Db` | Points configuration |
 
 ## Token Addresses
 
@@ -29,9 +29,10 @@ All hx.finance smart contracts deployed on Hyperliquid (Chain ID: 999).
 | Token | Address | Decimals | Description |
 |-------|---------|----------|-------------|
 | WHYPE | `0x5555555555555555555555555555555555555555` | 18 | Wrapped HYPE |
-| UETH | `0xBe6727B535545C67d5cAa73dEa54865B92CF7907` | 18 | Wrapped ETH |
+| UETH | `0xbe6727b535545c67d5caa73dea54865b92cf7907` | 18 | Wrapped ETH |
 | UBTC | `0x9FDBdA0A5e284c32744D2f17Ee5c74B284993463` | 8 | Wrapped BTC |
-| USDE | `0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34` | 18 | Ethena USDe |
+| USDe | `0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34` | 18 | Ethena USDe |
+| USDXL | `0xca79db4b49f608ef54a5cb813fbed3a6387bc645` | 18 | Last USD |
 
 ## Integration Guide
 
@@ -128,9 +129,9 @@ await tx.wait();
 ### Contract Verification
 
 All contracts are verified on Hyperliquid Explorer:
-- [Factory](https://explorer.hyperliquid.xyz/address/0x5F1339F9D930aD1529113d36FC1D3B8E08e1D9fC)
-- [SwapRouter](https://explorer.hyperliquid.xyz/address/0xD27b073A9B742ba2f92Ed4fB91423a726A06629e)
-- [PositionManager](https://explorer.hyperliquid.xyz/address/0x9f5BB2f03d47E639d12d5E5f08F08Ef108543E12)
+- [Factory](https://explorer.hyperliquid.xyz/address/0x40730EC6b87B0A06839962BEE669513fe6F20ECF)
+- [SwapRouter](https://explorer.hyperliquid.xyz/address/0xEBd14cdF290185Cc4d0b5eC73A0e095d780e5D2f)
+- [PositionManager](https://explorer.hyperliquid.xyz/address/0xA8FAA918701e15c95A6df24DCA0CFB5Bcb1b44B7)
 
 ## Security
 
