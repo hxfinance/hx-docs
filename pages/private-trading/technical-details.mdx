@@ -292,13 +292,28 @@ IERC20(token).approve(spender, amount);
 ```javascript
 // Example: Making a private deposit
 const { ethers } = require('ethers');
-const { generateCommitment } = require('@moonswap/privacy-sdk');
+const crypto = require('crypto');
+
+function generateCommitment() {
+    // Generate random 32-byte values
+    const secret = '0x' + crypto.randomBytes(32).toString('hex');
+    const nullifier = '0x' + crypto.randomBytes(32).toString('hex');
+    
+    // In production, use Poseidon hash
+    // For this example, using keccak256
+    const commitment = ethers.utils.keccak256(
+        ethers.utils.solidityPack(['bytes32', 'bytes32'], [secret, nullifier])
+    );
+    
+    return { commitment, secret, nullifier };
+}
 
 async function privateDeposit(amount, tokenId) {
     // Generate commitment
     const { commitment, secret, nullifier } = generateCommitment();
     
     // Save secret and nullifier securely!
+    // Store these values encrypted - they're needed for withdrawals
     await saveCommitmentData(secret, nullifier);
     
     // Execute deposit
@@ -315,22 +330,41 @@ async function privateDeposit(amount, tokenId) {
   
   <Tabs.Tab>
 ```python
-# Example: Generating proofs
-from moonswap_privacy import ProofGenerator
+# Example: Generating commitment data
+import hashlib
+import secrets
+from web3 import Web3
 
-def generate_trade_proof(commitment, nullifier, token_in, token_out, amount):
-    generator = ProofGenerator()
+def generate_commitment():
+    # Generate random 32-byte values
+    secret = '0x' + secrets.token_hex(32)
+    nullifier = '0x' + secrets.token_hex(32)
     
-    proof = generator.create_trade_proof(
-        commitment=commitment,
-        nullifier=nullifier,
-        token_in_id=token_in,
-        token_out_id=token_out,
-        amount_in=amount,
-        merkle_root=current_root
-    )
+    # In production, use Poseidon hash
+    # For this example, using keccak256
+    data = secret[2:] + nullifier[2:]  # Remove 0x prefixes
+    commitment = Web3.keccak(hexstr=data)
     
-    return proof.serialize()
+    return {
+        'commitment': commitment.hex(),
+        'secret': secret,
+        'nullifier': nullifier
+    }
+
+def prepare_deposit(amount, token_id):
+    # Generate commitment
+    commitment_data = generate_commitment()
+    
+    # Store these values securely - needed for future operations
+    # Never share or lose these values!
+    
+    return {
+        'token_id': token_id,
+        'amount': amount,
+        'commitment': commitment_data['commitment'],
+        'secret': commitment_data['secret'],
+        'nullifier': commitment_data['nullifier']
+    }
 ```
   </Tabs.Tab>
   
@@ -384,5 +418,5 @@ contract MyContract {
 - Decentralized sequencer
 
 <Callout type="success">
-  For the latest updates and detailed implementation code, visit our [GitHub repository](https://github.com/moonswap/privacy-contracts).
+  For the latest updates and detailed implementation code, visit our [GitHub repository](https://github.com/hxfinance/privacy-contracts).
 </Callout>
