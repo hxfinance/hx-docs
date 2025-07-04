@@ -419,19 +419,13 @@ IERC20(token).approve(spender, 0);
 IERC20(token).approve(spender, amount);
 ```
 
-## Merkle Tree System
-
-### Commitment Tree
-- Incremental Merkle tree
-- Height: 20 (supports ~1M commitments)
-- Hash function: Poseidon
-- Efficient updates with frontier tracking
+## Sanctions Management
 
 ### Sanctions Tree
-- Static Merkle tree
+- Static Merkle tree containing sanctioned addresses
 - Updated via off-chain oracle
-- Only root stored on-chain
-- Python updater script included
+- Only Merkle root stored on-chain
+- Python updater script for root updates
 
 ## Gas Optimization
 
