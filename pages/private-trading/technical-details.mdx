@@ -75,23 +75,24 @@ When you update a circuit:
 
 ### The Solution: Three-Layer Architecture
 
-```
-┌─────────────────────────────────────────────────────────┐
-│            HyperliquidPrivacySystemModular               │
-│         (Main contract - uses external registries)        │
-└─────────────────────┬───────────────┬───────────────────┘
-                      │               │
-                      ▼               ▼
-        ┌──────────────────┐  ┌──────────────────┐
-        │ Innocence Registry│  │  Proof Registry   │
-        │  (Stores proofs)  │  │ (Manages vkeys)   │
-        └──────────────────┘  └──────────────────┘
-                                      │
-                                      ▼
-                              ┌──────────────────┐
-                              │   SP1Verifier     │
-                              │ (Verifies proofs) │
-                              └──────────────────┘
+```mermaid
+graph TD
+    subgraph "Main Contract Layer"
+        HSM[HyperliquidPrivacySystemModular<br/>Uses external registries]
+    end
+    
+    subgraph "Registry Layer"
+        IR[Innocence Registry<br/>Stores proofs]
+        PR[Proof Registry<br/>Manages vkeys]
+    end
+    
+    subgraph "Verification Layer"
+        SP[SP1Verifier<br/>Verifies proofs]
+    end
+    
+    HSM --> IR
+    HSM --> PR
+    PR --> SP
 ```
 
 ### Key Contracts
@@ -113,15 +114,8 @@ When you update a circuit:
 
 ## How Circuit Updates Work
 
-### Before (Monolithic):
-```solidity
-// Hardcoded in contract
-bytes32 constant INNOCENCE_VKEY = 0x00182a...;
+With the modular architecture, circuit updates are seamless:
 
-// If circuit changes, must redeploy entire contract
-```
-
-### After (Modular):
 ```bash
 # 1. Update circuit
 cd zk-circuits/innocence-circuits
@@ -141,16 +135,18 @@ proveInnocence(proof, publicValues, 1);     // Use v1
 
 ## User Experience
 
-### For Existing Users:
-- Innocence status preserved in registry
-- Can continue using old proof versions
-- No need to re-prove or re-deposit
-- Seamless experience
+The modular design ensures a seamless experience:
 
-### For New Users:
-- Automatically use latest vkey version
-- Same process as before
-- Better security with updated circuits
+### When Circuits Are Updated:
+- Innocence status preserved in registry
+- Can continue using previous proof versions
+- No need to re-prove or re-deposit
+- Seamless transition
+
+### For All Users:
+- Automatically use latest vkey version by default
+- Option to specify version if needed
+- Enhanced security with each update
 
 ## Implementation Flow
 
@@ -478,8 +474,10 @@ async function privateDeposit(amount, tokenId) {
     // Generate commitment
     const { commitment, secret, nullifier } = generateCommitment();
     
-    // Save secret and nullifier securely!
-    // Store these values encrypted - they're needed for withdrawals
+    // Commitment storage handled by the UI:
+    // - Automatically encrypted and stored in browser
+    // - Downloaded as encrypted file
+    // - Optional hardware wallet backup via UI
     await saveCommitmentData(secret, nullifier);
     
     // Execute deposit
@@ -521,8 +519,10 @@ def prepare_deposit(amount, token_id):
     # Generate commitment
     commitment_data = generate_commitment()
     
-    # Store these values securely - needed for future operations
-    # Never share or lose these values!
+    # The UI handles secure storage:
+    # - Browser storage (encrypted)
+    # - File download (encrypted)
+    # - Hardware wallet option
     
     return {
         'token_id': token_id,

@@ -28,12 +28,19 @@ Once your innocence is proven, you can deposit tokens privately.
 1. Go to **Private Trading** → **Private Deposit**
 2. Select your token (WHYPE, UBTC, UETH, or USDE)
 3. Enter the amount to deposit
-4. **Important**: Save your commitment secret securely!
+4. The system will:
+   - Download your commitment as an encrypted file
+   - Store it in your browser (encrypted with your password)
 5. Approve token spend (if needed)
 6. Confirm the deposit transaction
 
 <Callout type="warning">
-  **Critical**: Save your commitment details (secret and nullifier) securely. You'll need them to trade and withdraw. If lost, your funds cannot be recovered!
+  **Commitment Storage**: Your commitment is automatically saved:
+  - Downloaded as an encrypted file to your device
+  - Stored in your browser's encrypted storage
+  - Hardware wallet backup available as a UI option
+  
+  Keep your password safe - you'll need it to access your commitments.
 </Callout>
 
 ### Execute Private Swaps
@@ -52,7 +59,7 @@ With funds deposited, you can now trade privately.
 When ready to exit the privacy pool:
 
 1. Go to **Private Trading** → **Private Withdraw**
-2. Enter your commitment details
+2. Select your commitment (loaded from browser/file/hardware)
 3. Specify withdrawal amount and recipient address
 4. Generate withdrawal proof
 5. Execute the withdrawal
@@ -72,17 +79,20 @@ When ready to exit the privacy pool:
 When you click "Deposit", the system will:
 - Generate a unique commitment for your deposit
 - Create a secret and nullifier pair
-- Display these for you to save
+- Automatically save them encrypted
 
-<Callout type="error">
-  **Security Alert**: Your commitment details are like private keys. Never share them and store them encrypted offline.
+<Callout type="info">
+  **Storage Options**: 
+  - **Automatic**: Browser storage (encrypted) and file download
+  - **Hardware Wallet**: Available as an option in the UI
+  - **Manual**: You can also save the commitment yourself
 </Callout>
 
-#### 3. Commitment Storage Best Practices
-- **Write it down**: Physical backup on paper
-- **Encrypt digitally**: Use password manager
-- **Never screenshot**: Avoid digital image storage
-- **Multiple backups**: Store in 2-3 secure locations
+#### 3. Commitment Management
+- **Browser Storage**: Automatically encrypted with your password
+- **Downloaded File**: Keep the encrypted backup file safe
+- **Hardware Option**: Use the UI to backup to Ledger/Trezor
+- **Recovery**: Import from file or hardware wallet when needed
 
 ### Executing Private Swaps
 
