@@ -1,0 +1,388 @@
+# Technical Details
+
+This section provides in-depth technical information about the Hyperliquid Privacy System "Innocence" implementation for developers and advanced users.
+
+import { Callout, Tabs } from 'nextra/components'
+
+## Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "User Layer"
+        U[User Wallet]
+        C[Commitment Generator]
+    end
+    
+    subgraph "Privacy Layer"
+        PC[Privacy Contract]
+        MT[Merkle Tree]
+        ZK[ZK Verifier]
+    end
+    
+    subgraph "AMM Layer"
+        R[Router V3]
+        P[Liquidity Pools]
+    end
+    
+    U --> C
+    C --> PC
+    PC --> ZK
+    PC --> MT
+    PC --> R
+    R --> P
+```
+
+## Smart Contract Architecture
+
+### Core Contract
+
+**Contract**: `HyperliquidPrivacySystemInnocence.sol`
+
+Key components:
+- Proof verification system
+- Commitment management
+- Nullifier tracking
+- Token balance accounting
+- Router integration
+
+### Key Functions
+
+<Tabs items={['Core Functions', 'View Functions', 'Events']}>
+  <Tabs.Tab>
+```solidity
+// Prove you're not sanctioned
+function proveInnocence(
+    bytes calldata innocenceProof, 
+    bytes calldata publicValues
+) external
+
+// Make a private deposit
+function deposit(
+    uint64 token, 
+    uint256 amount, 
+    bytes32 commitment
+) external
+
+// Execute private swap
+function privateSwap(
+    bytes calldata proof, 
+    bytes calldata publicValues, 
+    uint24 fee // or bytes calldata path
+) external
+
+// Withdraw funds
+function withdraw(
+    bytes32 nullifier,
+    address recipient,
+    uint64 token,
+    uint256 amount,
+    bytes calldata balanceProof,
+    bytes calldata publicValues
+) external
+```
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+```solidity
+// Check if address has proven innocence
+function hasProvenInnocence(address user) external view returns (bool)
+
+// Get innocence proof timestamp
+function innocenceProofTimestamp(address user) external view returns (uint256)
+
+// Check if commitment exists
+function commitmentIndices(bytes32 commitment) external view returns (uint256)
+
+// Get current Merkle root
+function getLastRoot() external view returns (bytes32)
+```
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+```solidity
+event ProofOfInnocence(
+    address indexed prover, 
+    uint256 timestamp
+);
+
+event Deposit(
+    bytes32 indexed commitment, 
+    uint64 token, 
+    uint256 amount
+);
+
+event PrivateSwap(
+    bytes32 indexed nullifierHash, 
+    uint64 tokenIn, 
+    uint64 tokenOut, 
+    uint256 amountIn
+);
+
+event Withdrawal(
+    bytes32 indexed nullifier, 
+    address recipient, 
+    uint64 token, 
+    uint256 amount
+);
+```
+  </Tabs.Tab>
+</Tabs>
+
+## Zero-Knowledge Circuits
+
+### SP1-Based Implementation
+
+All privacy proofs are generated using SP1 (Succinct Processor 1) zero-knowledge circuits.
+
+### Proof Formats
+
+#### Innocence Proof (61 bytes)
+```
+[0:20]   - Depositor address
+[20:52]  - Sanctions Merkle root
+[52:60]  - Timestamp (uint64)
+[60:61]  - Is innocent flag (bool)
+```
+
+#### Balance Proof (104 bytes)
+```
+[0:32]   - Commitment
+[32:64]  - Merkle root
+[64:96]  - Minimum balance
+[96:104] - Asset ID (uint64)
+```
+
+#### Trade Proof (168 bytes)
+```
+[0:32]    - Commitment
+[32:64]   - Nullifier hash
+[64:96]   - Merkle root
+[96:104]  - Token in ID
+[104:112] - Token out ID
+[112:119] - Amount in (uint56, divided by 256)
+[119:127] - Min amount out (uint64)
+[127:135] - Nonce (uint64)
+[135:168] - Padding (33 bytes)
+```
+
+<Callout type="info">
+  Amount precision: Input amounts are stored as uint56 divided by 256 to save space while maintaining reasonable precision.
+</Callout>
+
+## Commitment System
+
+### Commitment Generation
+
+```javascript
+commitment = hash(secret || nullifier)
+```
+
+Where:
+- `secret`: 32-byte random value
+- `nullifier`: 32-byte random value
+- `hash`: Poseidon hash function
+
+### Nullifier Management
+
+Nullifiers prevent double-spending:
+- Each commitment has one nullifier
+- For swaps: `nullifierHash = hash(nullifier || nonce)`
+- For withdrawals: Direct nullifier usage
+- Stored in mapping to prevent reuse
+
+## Token Management
+
+### Supported Tokens
+
+| Token | ID | Address | Decimals |
+|-------|-----|---------|----------|
+| WHYPE | 0 | 0x5555...5555 | 18 |
+| UBTC | 1 | 0x9FDB...3463 | 8 |
+| UETH | 2 | 0xBe67...7907 | 18 |
+| USDE | 3 | 0x5d3a...ef34 | 18 |
+
+### Balance Accounting
+
+- Virtual balances tracked per commitment
+- No actual token pooling (tokens remain in contract)
+- Balance proofs ensure sufficient funds
+- Atomic swaps maintain consistency
+
+## Router Integration
+
+### Uniswap V3 Integration
+
+**Router Address**: `0xEBd14cdF290185Cc4d0b5eC73A0e095d780e5D2f`
+
+#### Single-Hop Swaps
+```solidity
+ISwapRouter.ExactInputSingleParams({
+    tokenIn: tokenInAddress,
+    tokenOut: tokenOutAddress,
+    fee: fee,
+    recipient: address(this),
+    deadline: block.timestamp,
+    amountIn: amountIn,
+    amountOutMinimum: minAmountOut,
+    sqrtPriceLimitX96: 0
+})
+```
+
+#### Multi-Hop Swaps
+- Path encoded as: `token0 || fee0 || token1 || fee1 || token2...`
+- Automatic routing through multiple pools
+- Best execution path calculation
+
+## Security Features
+
+### Reentrancy Protection
+- OpenZeppelin's ReentrancyGuard
+- Check-effects-interactions pattern
+- State updates before external calls
+
+### Commitment Uniqueness
+- Each commitment must be unique
+- Tracked in `commitmentIndices` mapping
+- Prevents duplicate deposits
+
+### Nonce Enforcement
+- Sequential nonces per commitment
+- Prevents replay attacks
+- Ensures transaction ordering
+
+### Approval Management
+```solidity
+// Reset approval before setting new
+IERC20(token).approve(spender, 0);
+IERC20(token).approve(spender, amount);
+```
+
+## Merkle Tree System
+
+### Commitment Tree
+- Incremental Merkle tree
+- Height: 20 (supports ~1M commitments)
+- Hash function: Poseidon
+- Efficient updates with frontier tracking
+
+### Sanctions Tree
+- Static Merkle tree
+- Updated via off-chain oracle
+- Only root stored on-chain
+- Python updater script included
+
+## Gas Optimization
+
+### Packed Formats
+- Proof data tightly packed
+- Minimal calldata usage
+- Efficient storage patterns
+
+### Batch Capabilities
+- Multiple operations per transaction (planned)
+- Shared proof verification
+- Reduced overhead
+
+## Integration Guide
+
+### For Developers
+
+<Tabs items={['JavaScript', 'Python', 'Solidity']}>
+  <Tabs.Tab>
+```javascript
+// Example: Making a private deposit
+const { ethers } = require('ethers');
+const { generateCommitment } = require('@moonswap/privacy-sdk');
+
+async function privateDeposit(amount, tokenId) {
+    // Generate commitment
+    const { commitment, secret, nullifier } = generateCommitment();
+    
+    // Save secret and nullifier securely!
+    await saveCommitmentData(secret, nullifier);
+    
+    // Execute deposit
+    const tx = await privacyContract.deposit(
+        tokenId,
+        amount,
+        commitment
+    );
+    
+    return tx.hash;
+}
+```
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+```python
+# Example: Generating proofs
+from moonswap_privacy import ProofGenerator
+
+def generate_trade_proof(commitment, nullifier, token_in, token_out, amount):
+    generator = ProofGenerator()
+    
+    proof = generator.create_trade_proof(
+        commitment=commitment,
+        nullifier=nullifier,
+        token_in_id=token_in,
+        token_out_id=token_out,
+        amount_in=amount,
+        merkle_root=current_root
+    )
+    
+    return proof.serialize()
+```
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+```solidity
+// Example: Integrating with privacy system
+interface IPrivacySystem {
+    function deposit(uint64 token, uint256 amount, bytes32 commitment) external;
+    function hasProvenInnocence(address user) external view returns (bool);
+}
+
+contract MyContract {
+    IPrivacySystem privacy = IPrivacySystem(PRIVACY_ADDRESS);
+    
+    function privateAction() external {
+        require(privacy.hasProvenInnocence(msg.sender), "Prove innocence first");
+        // Your logic here
+    }
+}
+```
+  </Tabs.Tab>
+</Tabs>
+
+## Deployment Information
+
+### Mainnet Deployment
+- Network: Hyperliquid Mainnet
+- Chain ID: 998
+- Contract: `[Deployed Address]`
+- Verifier: `[Verifier Address]`
+
+### Configuration
+- Innocence validity: 30 days
+- Min deposit: 0.001 tokens
+- Max commitments: ~1 million
+- Supported tokens: 4 (expandable)
+
+## Future Enhancements
+
+### Planned Features
+- Private liquidity provision
+- Cross-chain privacy bridges
+- Batch operations
+- Hardware wallet integration
+- Governance participation
+
+### Research Areas
+- Optimistic rollup integration
+- Account abstraction support
+- Social recovery mechanisms
+- Decentralized sequencer
+
+<Callout type="success">
+  For the latest updates and detailed implementation code, visit our [GitHub repository](https://github.com/moonswap/privacy-contracts).
+</Callout>

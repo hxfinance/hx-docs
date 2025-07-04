@@ -1,0 +1,235 @@
+# How to Trade Privately
+
+This guide walks you through the complete process of private trading on Moonswap, from initial setup to executing trades and withdrawing funds.
+
+import { Callout, Steps } from 'nextra/components'
+
+<Callout type="info">
+  Before starting, ensure you have completed the [Proof of Innocence](/private-trading/proof-of-innocence) process.
+</Callout>
+
+## Complete Trading Flow
+
+<Steps>
+
+### Generate Proof of Innocence
+
+Before you can use any privacy features, you must prove you're not on sanctions lists.
+
+1. Navigate to **Private Trading** → **Proof of Innocence**
+2. Click **Generate Proof**
+3. Approve the transaction
+4. Wait for confirmation
+
+### Make a Private Deposit
+
+Once your innocence is proven, you can deposit tokens privately.
+
+1. Go to **Private Trading** → **Private Deposit**
+2. Select your token (WHYPE, UBTC, UETH, or USDE)
+3. Enter the amount to deposit
+4. **Important**: Save your commitment secret securely!
+5. Approve token spend (if needed)
+6. Confirm the deposit transaction
+
+<Callout type="warning">
+  **Critical**: Save your commitment details (secret and nullifier) securely. You'll need them to trade and withdraw. If lost, your funds cannot be recovered!
+</Callout>
+
+### Execute Private Swaps
+
+With funds deposited, you can now trade privately.
+
+1. Navigate to **Private Trading** → **Private Swap**
+2. Select your input and output tokens
+3. Enter the amount to swap
+4. The system will show available routes
+5. Click **Generate Proof** to create the swap proof
+6. Confirm the private swap transaction
+
+### Withdraw Your Funds
+
+When ready to exit the privacy pool:
+
+1. Go to **Private Trading** → **Private Withdraw**
+2. Enter your commitment details
+3. Specify withdrawal amount and recipient address
+4. Generate withdrawal proof
+5. Execute the withdrawal
+
+</Steps>
+
+## Detailed Instructions
+
+### Making Your First Private Deposit
+
+#### 1. Preparation
+- Ensure you have tokens to deposit
+- Have HYPE for gas fees
+- Use a secure environment (not public WiFi)
+
+#### 2. Generate Commitment
+When you click "Deposit", the system will:
+- Generate a unique commitment for your deposit
+- Create a secret and nullifier pair
+- Display these for you to save
+
+<Callout type="error">
+  **Security Alert**: Your commitment details are like private keys. Never share them and store them encrypted offline.
+</Callout>
+
+#### 3. Commitment Storage Best Practices
+- **Write it down**: Physical backup on paper
+- **Encrypt digitally**: Use password manager
+- **Never screenshot**: Avoid digital image storage
+- **Multiple backups**: Store in 2-3 secure locations
+
+### Executing Private Swaps
+
+#### Single-Hop Swaps
+Direct swaps between token pairs with liquidity pools:
+- Fastest execution
+- Lowest fees
+- Best for common pairs
+
+#### Multi-Hop Swaps
+Routed through multiple pools for better pricing:
+- Automatic routing
+- May have better rates
+- Slightly higher gas costs
+
+#### Swap Settings
+- **Slippage Tolerance**: Set between 0.5% - 3%
+- **Deadline**: Transaction validity period
+- **Min Output**: Protection against price changes
+
+### Managing Multiple Commitments
+
+You can have multiple active commitments:
+
+1. **Commitment Dashboard**
+   - View all your commitments
+   - Check balances
+   - Track swap history
+
+2. **Nonce System**
+   - Each commitment can perform multiple swaps
+   - Nonces prevent double-spending
+   - Sequential nonce enforcement
+
+### Advanced Features
+
+#### Partial Withdrawals
+You don't need to withdraw everything at once:
+- Withdraw any amount up to your balance
+- Remaining funds stay in privacy pool
+- Multiple withdrawals from same commitment
+
+#### Cross-Token Privacy
+Your privacy extends across tokens:
+- Deposit WHYPE, withdraw USDE
+- No on-chain link between deposit and withdrawal
+- Complete transaction graph privacy
+
+## Best Practices
+
+### Security
+
+1. **Commitment Management**
+   - Use unique secrets for each deposit
+   - Never reuse nullifiers
+   - Store backups securely
+
+2. **Transaction Timing**
+   - Avoid patterns in deposit/withdrawal times
+   - Use random amounts when possible
+   - Consider time delays between actions
+
+3. **Network Security**
+   - Use VPN for additional privacy
+   - Avoid public networks
+   - Clear browser cache after sessions
+
+### Gas Optimization
+
+- **Batch Operations**: Plan multiple swaps together
+- **Optimal Times**: Trade during low network congestion
+- **Token Approvals**: Set reasonable allowances
+
+### Privacy Maximization
+
+1. **Amount Obfuscation**
+   - Use non-round numbers
+   - Vary deposit amounts
+   - Split large amounts
+
+2. **Timing Strategies**
+   - Random delays between transactions
+   - Avoid predictable patterns
+   - Use different times of day
+
+3. **Address Management**
+   - Withdraw to fresh addresses
+   - Avoid linking to KYC addresses
+   - Use different addresses for different purposes
+
+## Common Scenarios
+
+### Scenario 1: Private DCA Strategy
+```
+1. Deposit USDE privately
+2. Weekly swap USDE → WHYPE
+3. Accumulate in privacy pool
+4. Withdraw when target reached
+```
+
+### Scenario 2: Large Trade Execution
+```
+1. Split amount into multiple deposits
+2. Execute swaps over time
+3. Withdraw to different addresses
+4. Maintain transaction privacy
+```
+
+### Scenario 3: Arbitrage Trading
+```
+1. Deposit capital privately
+2. Execute rapid swaps
+3. Capture price differences
+4. Keep strategies hidden
+```
+
+## Troubleshooting
+
+### "Insufficient Balance" Error
+- Verify commitment has funds
+- Check you're using correct nonce
+- Ensure proof matches current state
+
+### "Invalid Proof" Error
+- Regenerate proof with current data
+- Check Merkle root is up-to-date
+- Verify commitment details are correct
+
+### "Transaction Failed"
+- Increase gas limit
+- Check slippage settings
+- Verify token approvals
+
+## UI Navigation
+
+### Desktop Interface
+1. **Privacy Menu**: Top navigation bar
+2. **Quick Actions**: Dashboard widgets
+3. **History View**: Transaction explorer
+4. **Settings**: Privacy preferences
+
+### Mobile Interface
+1. **Bottom Tab**: Privacy section
+2. **Swipe Actions**: Quick deposit/withdraw
+3. **Commitment List**: Scrollable view
+4. **QR Support**: For commitment backup
+
+<Callout type="success">
+  You're now ready to trade privately on Moonswap! Remember to always prioritize security and follow best practices for maximum privacy.
+</Callout>
