@@ -1,0 +1,124 @@
+# HX.Finance Referrals Feature - Implementation Details
+
+## Overview
+HX.Finance has implemented a comprehensive referral system integrated into the Points interface, enabling users to earn additional points through a multi-tier referral program.
+
+## Technical Architecture
+
+### Database Structure (Supabase)
+The referral system uses the following database tables:
+- **`referrals`**: Stores user referral codes and relationships
+- **`referral_stats`**: Tracks referral performance metrics  
+- **`referral_config`**: Contains configurable parameters for the referral program
+
+### Configuration Parameters (Default Values)
+```
+- referrer_percentage: 17.5%
+- referee_multiplier: 1.2x (20% bonus)
+- referee_multiplier_days: 30 days
+- minimum_qualification_points: 0 (currently disabled for testing)
+- milestone_10_bonus: 500 points
+- milestone_50_bonus: 3,000 points
+- milestone_100_bonus: 10,000 points
+```
+
+## Key Features
+
+### 1. Unique Referral Code System
+- **Custom Codes**: Users can create custom referral codes (3-20 characters, alphanumeric with underscores/dashes)
+- **Validation**: Real-time availability checking prevents duplicate codes
+- **Auto-generation**: If no custom code is set, system generates one using wallet address format: `{wallet_slice}_{timestamp}`
+- **Code Management**: Users can update their referral code if not already taken
+
+### 2. Referral Tracking & Stats
+The system tracks:
+- **Total Referrals**: All users who used your code
+- **Qualified Referrals**: Users who met qualification criteria (currently 0 points for testing)
+- **Active Referrals**: Currently engaged users
+- **Earned Points**: Total points from referral bonuses
+- **Milestone Status**: Progress toward 10, 50, and 100 referral milestones
+
+### 3. Referral Flow
+
+#### For Referrers:
+1. Generate or customize referral code in Referrals tab
+2. Share code with friends (copy button for easy sharing)
+3. Track referred users in real-time
+4. Earn 17.5% of referee's earned points
+5. Receive milestone bonuses at 10, 50, and 100 referrals
+
+#### For Referees:
+1. Enter referral code when first connecting wallet
+2. Receive 1.2x points multiplier for 30 days
+3. See multiplier status and days remaining
+4. Cannot change referral relationship once established
+
+### 4. User Interface Components
+
+#### Referrals Tab Display:
+- **My Referral Code**: Displays code with copy functionality
+- **Stats Overview**: 
+  - Total/Qualified/Active referrals
+  - Points earned from referrals
+  - Milestone progress indicators
+- **Referred Users List**: Shows wallet addresses, join dates, qualification status, and points earned
+- **Help Dialog**: Explains how the referral system works
+
+#### Visual Indicators:
+- ✅ Green checkmark for qualified users
+- ⚡ Lightning bolt for active multipliers
+- 🎯 Target icons for milestone achievements
+- 📊 Progress bars for milestone tracking
+
+### 5. Points Integration
+
+The referral system integrates with the existing points infrastructure:
+- Points data flows through the GraphQL endpoint: `https://api.goldsky.com/api/public/project_cmay1j7dh90w601r2hjv26a5b/subgraphs/hx-time-weighted-points/v1.0.0/gn`
+- Referral points are synced automatically when users interact with the platform
+- All referral bonuses are added to the user's total points balance
+
+### 6. Security & Constraints
+
+- **One Referral Only**: Users can only be referred once (prevents gaming)
+- **No Self-Referrals**: System prevents users from referring themselves
+- **Wallet Normalization**: All wallet addresses are normalized to lowercase
+- **Foreign Key Constraints**: Ensures data integrity between users and referrals tables
+
+### 7. Special Features
+
+#### Multiplier System:
+- New users get 20% bonus on all earned points for 30 days
+- Multiplier countdown shows days remaining
+- Expired multipliers are clearly marked
+
+#### Milestone Rewards:
+- Automatic milestone detection
+- One-time bonuses at key thresholds
+- Visual celebration when milestones are reached
+
+#### Real-time Updates:
+- Live validation of referral codes
+- Instant updates when new users use your code
+- Automatic point synchronization
+
+## Implementation Technologies
+
+- **Frontend**: React with TypeScript
+- **State Management**: React hooks (useReferrals, useReferralStats, etc.)
+- **Database**: Supabase (PostgreSQL)
+- **Styling**: Tailwind CSS with custom UI components
+- **Icons**: Lucide React icons
+- **Notifications**: Custom toast system
+
+## Future Considerations
+
+The current implementation has placeholders for:
+- Minimum qualification points (currently set to 0)
+- Enhanced milestone rewards
+- Referral leaderboards
+- Time-limited referral campaigns
+- NFT rewards for top referrers
+
+---
+
+*Note: The referral system is fully operational on HX.Finance mainnet. The minimum qualification requirement is temporarily disabled to facilitate testing and user onboarding.*
