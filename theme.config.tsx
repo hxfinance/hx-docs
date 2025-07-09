@@ -7,7 +7,7 @@ const config: DocsThemeConfig = {
     link: 'https://github.com/hxfinance',
   },
   chat: {
-    link: 'https://discord.gg/hxfinance',
+    link: 'https://discord.gg/hV54GbXm',
   },
   docsRepositoryBase: 'https://github.com/hxfinance/hx-docs/blob/main',
   footer: {
