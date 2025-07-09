@@ -1,124 +1,135 @@
-# HX.Finance Referrals Feature - Implementation Details
+# Referrals
 
-## Overview
-HX.Finance has implemented a comprehensive referral system integrated into the Points interface, enabling users to earn additional points through a multi-tier referral program.
+Earn bonus points by inviting friends to HX.Finance and get rewarded when they trade.
 
-## Technical Architecture
+## How Referrals Work
 
-### Database Structure (Supabase)
-The referral system uses the following database tables:
-- **`referrals`**: Stores user referral codes and relationships
-- **`referral_stats`**: Tracks referral performance metrics  
-- **`referral_config`**: Contains configurable parameters for the referral program
+The referral system lets you earn additional points in two ways:
+- **Earn from friends**: Get 17.5% of all points your referrals earn
+- **Milestone bonuses**: Unlock rewards at 10, 50, and 100 referrals
 
-### Configuration Parameters (Default Values)
-```
-- referrer_percentage: 17.5%
-- referee_multiplier: 1.2x (20% bonus)
-- referee_multiplier_days: 30 days
-- minimum_qualification_points: 0 (currently disabled for testing)
-- milestone_10_bonus: 500 points
-- milestone_50_bonus: 3,000 points
-- milestone_100_bonus: 10,000 points
-```
+## Getting Started
 
-## Key Features
+### Step 1: Get Your Referral Code
+1. Go to the [Points page](https://app.hx.finance/points)
+2. Click the "Referrals" tab
+3. Create a custom code or use the auto-generated one
+4. Share your code with friends
 
-### 1. Unique Referral Code System
-- **Custom Codes**: Users can create custom referral codes (3-20 characters, alphanumeric with underscores/dashes)
-- **Validation**: Real-time availability checking prevents duplicate codes
-- **Auto-generation**: If no custom code is set, system generates one using wallet address format: `{wallet_slice}_{timestamp}`
-- **Code Management**: Users can update their referral code if not already taken
+### Step 2: Your Friends Join
+When friends use your code:
+- They get a **1.2x points multiplier for 30 days** (20% bonus!)
+- You earn **17.5% of all their points**
+- Both of you benefit!
 
-### 2. Referral Tracking & Stats
-The system tracks:
-- **Total Referrals**: All users who used your code
-- **Qualified Referrals**: Users who met qualification criteria (currently 0 points for testing)
-- **Active Referrals**: Currently engaged users
-- **Earned Points**: Total points from referral bonuses
-- **Milestone Status**: Progress toward 10, 50, and 100 referral milestones
+## Referral Rewards
 
-### 3. Referral Flow
+### Ongoing Rewards
+**You earn 17.5% of all points your referrals generate**
 
-#### For Referrers:
-1. Generate or customize referral code in Referrals tab
-2. Share code with friends (copy button for easy sharing)
-3. Track referred users in real-time
-4. Earn 17.5% of referee's earned points
-5. Receive milestone bonuses at 10, 50, and 100 referrals
+Example:
+- Your friend trades $1,000 = 10 points for them
+- You automatically get 1.75 bonus points
+- Your friend provides $10,000 liquidity for a month = 72,000 points
+- You get 12,600 bonus points!
 
-#### For Referees:
-1. Enter referral code when first connecting wallet
-2. Receive 1.2x points multiplier for 30 days
-3. See multiplier status and days remaining
-4. Cannot change referral relationship once established
+### Milestone Bonuses
+Unlock one-time bonuses as you grow your network:
 
-### 4. User Interface Components
+- **10 Referrals** → 500 bonus points
+- **50 Referrals** → 3,000 bonus points  
+- **100 Referrals** → 10,000 bonus points
 
-#### Referrals Tab Display:
-- **My Referral Code**: Displays code with copy functionality
-- **Stats Overview**: 
-  - Total/Qualified/Active referrals
-  - Points earned from referrals
-  - Milestone progress indicators
-- **Referred Users List**: Shows wallet addresses, join dates, qualification status, and points earned
-- **Help Dialog**: Explains how the referral system works
+## For New Users
 
-#### Visual Indicators:
-- ✅ Green checkmark for qualified users
-- ⚡ Lightning bolt for active multipliers
-- 🎯 Target icons for milestone achievements
-- 📊 Progress bars for milestone tracking
+### Using a Referral Code
+If someone referred you:
+1. Enter their code when you first connect your wallet
+2. Get an instant **1.2x multiplier on all points for 30 days**
+3. See your bonus status in the Points interface
 
-### 5. Points Integration
+**Important**: You can only use one referral code, and it can't be changed later.
 
-The referral system integrates with the existing points infrastructure:
-- Points data flows through the GraphQL endpoint: `https://api.goldsky.com/api/public/project_cmay1j7dh90w601r2hjv26a5b/subgraphs/hx-time-weighted-points/v1.0.0/gn`
-- Referral points are synced automatically when users interact with the platform
-- All referral bonuses are added to the user's total points balance
+## Managing Your Referrals
 
-### 6. Security & Constraints
+### Your Referral Dashboard Shows:
+- **Your unique code** with easy copy button
+- **Total referrals** and how many are qualified
+- **Points earned** from your referral network
+- **Progress** toward milestone bonuses
+- **List of referred users** with their activity
 
-- **One Referral Only**: Users can only be referred once (prevents gaming)
-- **No Self-Referrals**: System prevents users from referring themselves
-- **Wallet Normalization**: All wallet addresses are normalized to lowercase
-- **Foreign Key Constraints**: Ensures data integrity between users and referrals tables
+### Customizing Your Code
+- Choose a memorable code (3-20 characters)
+- Use letters, numbers, underscores, or dashes
+- Check availability in real-time
+- Update anytime if not taken
 
-### 7. Special Features
+## Example Scenarios
 
-#### Multiplier System:
-- New users get 20% bonus on all earned points for 30 days
-- Multiplier countdown shows days remaining
-- Expired multipliers are clearly marked
+### Active Trader Referral
+You refer an active trader who:
+- Trades $500 daily = 5 points/day
+- Provides $5,000 liquidity = 1,200 points/day
+- Total: 1,205 points/day
 
-#### Milestone Rewards:
-- Automatic milestone detection
-- One-time bonuses at key thresholds
-- Visual celebration when milestones are reached
+**Your daily bonus: 210.875 points!**
 
-#### Real-time Updates:
-- Live validation of referral codes
-- Instant updates when new users use your code
-- Automatic point synchronization
+### Building a Network
+Refer 10 friends who each:
+- Trade $100 weekly = 1 point/week each
+- You earn: 1.75 points/week (0.175 × 10)
+- Plus milestone bonus: 500 points instantly!
 
-## Implementation Technologies
+### Power User Strategy
+Grow to 50 referrals:
+- Average 100 points/day per referral
+- You earn: 875 points/day (17.5% × 50 × 100)
+- Monthly: 26,250 bonus points
+- Plus milestone bonuses: 3,500 points total
 
-- **Frontend**: React with TypeScript
-- **State Management**: React hooks (useReferrals, useReferralStats, etc.)
-- **Database**: Supabase (PostgreSQL)
-- **Styling**: Tailwind CSS with custom UI components
-- **Icons**: Lucide React icons
-- **Notifications**: Custom toast system
+## Best Practices
 
-## Future Considerations
+### For Referrers
+- Share your code on social media
+- Explain the 30-day bonus to friends
+- Help new users get started
+- Track your progress regularly
 
-The current implementation has placeholders for:
-- Minimum qualification points (currently set to 0)
-- Enhanced milestone rewards
-- Referral leaderboards
-- Time-limited referral campaigns
-- NFT rewards for top referrers
+### For New Users
+- Use a code immediately when joining
+- Take advantage of your 30-day multiplier
+- Start trading and providing liquidity early
+- Maximize your bonus period
+
+## Frequently Asked Questions
+
+**Q: Can I change my referral code?**
+A: Yes, as long as the new code isn't already taken.
+
+**Q: Can I refer myself?**
+A: No, self-referrals are not allowed.
+
+**Q: Do referral points count toward my tier?**
+A: Yes, all bonus points count toward tier progression.
+
+**Q: Is there a limit to referrals?**
+A: No limit - refer as many friends as you want!
+
+**Q: When do I receive referral bonuses?**
+A: Instantly as your referrals earn points.
+
+## Start Referring Today
+
+Ready to grow your points through referrals?
+
+1. **[Visit Points Page](https://app.hx.finance/points)**
+2. **Click "Referrals" tab**
+3. **Get your unique code**
+4. **Start sharing!**
+
+Every friend you bring to HX.Finance benefits both of you. The earlier you start, the more you'll earn!
 
 ---
 
-*Note: The referral system is fully operational on HX.Finance mainnet. The minimum qualification requirement is temporarily disabled to facilitate testing and user onboarding.*
+**[Check Your Referrals](https://app.hx.finance/points)** | **[Learn About Points](/points-rewards/how-points-work)** | **[Start Trading](/getting-started/first-swap)**
