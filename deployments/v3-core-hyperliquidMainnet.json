@@ -1,0 +1,9 @@
+{
+  "network": "hyperliquidMainnet",
+  "chainId": 999,
+  "contracts": {
+    "UniswapV3Factory": "0xC414F04a58d1359fc0C48a12ceF2ECF44322A6cC"
+  },
+  "deployer": "0xFF9FD2d95d8959C8C6f0ca88D32eCFB89aF6D546",
+  "timestamp": "2025-07-07T14:40:04.449Z"
+}

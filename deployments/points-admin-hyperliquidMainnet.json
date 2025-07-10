@@ -1,0 +1,11 @@
+{
+  "network": "hyperliquidMainnet",
+  "chainId": 999,
+  "contracts": {
+    "PointsAdmin": "0x54c655e0C42AAfc8c5b835313fC6d3509F5C7e62"
+  },
+  "address": "0x54c655e0C42AAfc8c5b835313fC6d3509F5C7e62",
+  "owner": "0x02B987C98AaBc552ac489dFb546a38F311cc6F8D",
+  "deployer": "0xFF9FD2d95d8959C8C6f0ca88D32eCFB89aF6D546",
+  "timestamp": "2025-07-07T15:05:00.000Z"
+}

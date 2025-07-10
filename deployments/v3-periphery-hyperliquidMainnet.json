@@ -1,0 +1,12 @@
+{
+  "network": "hyperliquidMainnet",
+  "chainId": 999,
+  "contracts": {
+    "SwapRouter": "0x27B219f08a4C627c7FC3aad72Da9aA255fF9BFa8",
+    "NFTDescriptor": "0x528EcDA014Fa28682F821282170bB944adE0a81a",
+    "NonfungiblePositionManager": "0x3B894223db2f884BC6161e2f149cEb6177C3C100",
+    "QuoterV2": "0x27901f5E149c8043Ae2254E0DEDE44E201c83125"
+  },
+  "deployer": "0xFF9FD2d95d8959C8C6f0ca88D32eCFB89aF6D546",
+  "timestamp": "2025-07-07T15:01:02.540Z"
+}

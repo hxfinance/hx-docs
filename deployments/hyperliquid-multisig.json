@@ -1,0 +1,19 @@
+{
+  "network": "hyperliquid",
+  "chainId": 999,
+  "timestamp": "2025-07-07T13:47:02.318Z",
+  "deployer": "0xFF9FD2d95d8959C8C6f0ca88D32eCFB89aF6D546",
+  "contracts": {
+    "safeSingleton": "0xF38c037208748A3b8C7BC51fbB4D2A4B8F169dB8",
+    "proxyFactory": "0x338B90e1fB989E65188Cbf96F13C31c86f801eCA",
+    "multiSend": "0x14b2dEB7bf4531F672A7869a74A60C61f4C6c031",
+    "fallbackHandler": "0x965890e97FB5dAcbFF60718164d9A99Be889198e",
+    "safe": "0x02B987C98AaBc552ac489dFb546a38F311cc6F8D"
+  },
+  "configuration": {
+    "owners": [
+      "0xFF9FD2d95d8959C8C6f0ca88D32eCFB89aF6D546"
+    ],
+    "threshold": 1
+  }
+}

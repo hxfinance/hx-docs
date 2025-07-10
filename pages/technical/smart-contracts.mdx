@@ -7,21 +7,21 @@ All hx.finance smart contracts deployed on Hyperliquid (Chain ID: 999).
 ### Uniswap V3 Core
 | Contract | Address | Description |
 |----------|---------|-------------|
-| Factory | `0x40730EC6b87B0A06839962BEE669513fe6F20ECF` | Creates new pools |
+| Factory | `0xC414F04a58d1359fc0C48a12ceF2ECF44322A6cC` | Creates new pools |
 | Multicall2 | `0xC41Ff4C0417aB4E3ae562828869CA89d5E1Db604` | Batch transactions |
 
 ### Uniswap V3 Periphery
 | Contract | Address | Description |
 |----------|---------|-------------|
-| SwapRouter | `0xEBd14cdF290185Cc4d0b5eC73A0e095d780e5D2f` | Execute swaps |
-| NFTDescriptor | `0xcfDA36424f29e60ea5E0B4eBAd5cA625B3410A79` | NFT metadata |
-| NonfungiblePositionManager | `0xA8FAA918701e15c95A6df24DCA0CFB5Bcb1b44B7` | LP positions |
-| QuoterV2 | `0x1d3e047D96d33fE74aaa16162750ded6d58EB073` | Quote swaps |
+| SwapRouter | `0x27B219f08a4C627c7FC3aad72Da9aA255fF9BFa8` | Execute swaps |
+| NFTDescriptor | `0x528EcDA014Fa28682F821282170bB944adE0a81a` | NFT metadata |
+| NonfungiblePositionManager | `0x3B894223db2f884BC6161e2f149cEb6177C3C100` | LP positions |
+| QuoterV2 | `0x27901f5E149c8043Ae2254E0DEDE44E201c83125` | Quote swaps |
 
 ### Points System
 | Contract | Address | Description |
 |----------|---------|-------------|
-| PointsAdmin | `0x42bE73f3030Fe63d60A5726dE0243f031B0956Db` | Points configuration |
+| PointsAdmin | `0x54c655e0C42AAfc8c5b835313fC6d3509F5C7e62` | Points configuration |
 
 ## Token Addresses
 
@@ -29,7 +29,7 @@ All hx.finance smart contracts deployed on Hyperliquid (Chain ID: 999).
 | Token | Address | Decimals | Description |
 |-------|---------|----------|-------------|
 | WHYPE | `0x5555555555555555555555555555555555555555` | 18 | Wrapped HYPE |
-| UETH | `0xbe6727b535545c67d5caa73dea54865b92cf7907` | 18 | Wrapped ETH |
+| UETH | `0xBe6727B535545C67d5cAa73dEa54865B92CF7907` | 18 | Wrapped ETH |
 | UBTC | `0x9FDBdA0A5e284c32744D2f17Ee5c74B284993463` | 8 | Wrapped BTC |
 | USDe | `0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34` | 18 | Ethena USDe |
 | USDXL | `0xca79db4b49f608ef54a5cb813fbed3a6387bc645` | 18 | Last USD |
@@ -41,16 +41,15 @@ All hx.finance smart contracts deployed on Hyperliquid (Chain ID: 999).
 ### Major Pools with Points Multipliers
 | Pool | Address | Fee Tier | Points Multiplier | Liquidity |
 |------|---------|----------|-------------------|-----------|
-| WHYPE/USDe | `0x4160da53d2de1528b5b3fc054481de089353f033` | 0.3% | 3x | Active |
-| WHYPE/USDXL | `0xa2529db1e8547b6823f2a58242d98863d7b9cd01` | 0.3% | 3x | $1,830+ |
-| UBTC/USDe | `0xfb50d6c74941fa68bf7819d2848b1a7b0651d56c` | 0.3% | 2.5x | Active |
-| BUDDY/USDe | `0xc30b19fe9f68430cc71386a84e5e5da5bbf51388` | 0.3% | 2x | Active |
+| WHYPE/USDe | `0x59544154B152B8C8FD2488bFF41c1E2215B1B1eD` | 0.3% | 3x | Active |
+| USDe/UBTC | `0xB65C69fD8339Fb70ef7201d9C96B968519D7F21E` | 0.3% | 2.5x | Active |
+| BUDDY/USDe | `0xdf18bA1C935e1bf943696Da9312bAD2d3B652441` | 0.3% | 2x | Active |
+| LHYPE/USDe | `0x9ba8d33c4DE40c6CbAef13dC2468990F10Ddf038` | 0.3% | 2x | Active |
 
 ### Additional Pools
 | Pool | Address | Fee Tier | Status |
 |------|---------|----------|--------|
 | USDe/UETH | `0x5b7eaD40334D20294c0a245177d77B78e5193514` | 0.3% | Active |
-| WHYPE/LHYPE | Available for creation | 0.3% | Not yet created |
 
 ## Integration Guide
 
@@ -147,9 +146,9 @@ await tx.wait();
 ### Contract Verification
 
 All contracts are verified on Hyperliquid Explorer:
-- [Factory](https://explorer.hyperliquid.xyz/address/0x40730EC6b87B0A06839962BEE669513fe6F20ECF)
-- [SwapRouter](https://explorer.hyperliquid.xyz/address/0xEBd14cdF290185Cc4d0b5eC73A0e095d780e5D2f)
-- [PositionManager](https://explorer.hyperliquid.xyz/address/0xA8FAA918701e15c95A6df24DCA0CFB5Bcb1b44B7)
+- [Factory](https://hyperevmscan.io/address/0xC414F04a58d1359fc0C48a12ceF2ECF44322A6cC)
+- [SwapRouter](https://hyperevmscan.io/address/0x27B219f08a4C627c7FC3aad72Da9aA255fF9BFa8)
+- [PositionManager](https://hyperevmscan.io/address/0x3B894223db2f884BC6161e2f149cEb6177C3C100)
 
 ## Security
 
@@ -182,7 +181,7 @@ All contracts are verified on Hyperliquid Explorer:
     "decimals": 18
   },
   "rpcUrls": ["https://rpc.hyperliquid.xyz/evm"],
-  "blockExplorerUrls": ["https://explorer.hyperliquid.xyz"]
+  "blockExplorerUrls": ["https://hyperevmscan.io"]
 }
 ```
 

@@ -1,0 +1,18 @@
+{
+  "address": "0x59544154B152B8C8FD2488bFF41c1E2215B1B1eD",
+  "token0": {
+    "address": "0x5555555555555555555555555555555555555555",
+    "symbol": "WHYPE",
+    "decimals": 18
+  },
+  "token1": {
+    "address": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "decimals": 18
+  },
+  "fee": 3000,
+  "sqrtPriceX96": "498634134149143896252135505920",
+  "tick": "36792",
+  "createdAt": "2025-07-07T15:26:04.438Z",
+  "network": "hyperliquidMainnet"
+}

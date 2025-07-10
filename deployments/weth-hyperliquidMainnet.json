@@ -1,0 +1,7 @@
+{
+  "network": "hyperliquidMainnet",
+  "chainId": 999,
+  "WETH9": "0x331Aa3381167b6fE3aD7A9661fC87cE22B4a91dB",
+  "deployer": "0xFF9FD2d95d8959C8C6f0ca88D32eCFB89aF6D546",
+  "timestamp": "2025-07-07T14:39:04.324Z"
+}

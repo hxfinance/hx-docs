@@ -1,0 +1,18 @@
+{
+  "address": "0xB65C69fD8339Fb70ef7201d9C96B968519D7F21E",
+  "token0": {
+    "address": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "decimals": 18
+  },
+  "token1": {
+    "address": "0x9FDBdA0A5e284c32744D2f17Ee5c74B284993463",
+    "symbol": "UBTC",
+    "decimals": 8
+  },
+  "fee": 3000,
+  "sqrtPriceX96": "2402585925785460146176",
+  "tick": "-346244",
+  "createdAt": "2025-07-08T14:49:03.718Z",
+  "network": "hyperliquidMainnet"
+}

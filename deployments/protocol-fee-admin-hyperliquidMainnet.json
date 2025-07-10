@@ -1,0 +1,11 @@
+{
+  "network": "hyperliquidMainnet",
+  "chainId": 999,
+  "contracts": {
+    "ProtocolFeeAdmin": "0xf5a5D123415a5D97CB65d6ffcbf33b9152c79318"
+  },
+  "multisig": "0x02B987C98AaBc552ac489dFb546a38F311cc6F8D",
+  "factory": "0xC414F04a58d1359fc0C48a12ceF2ECF44322A6cC",
+  "deployer": "0xFF9FD2d95d8959C8C6f0ca88D32eCFB89aF6D546",
+  "timestamp": "2025-07-07T14:51:03.977Z"
+}
