@@ -30,18 +30,26 @@ As a liquidity provider (LP), you:
 
 ## Understanding Concentrated Liquidity
 
-Unlike traditional AMMs, hx.finance uses **concentrated liquidity**:
+HX Finance uses an advanced **concentrated liquidity** system:
 
-### Traditional AMM
-- Liquidity spread across all prices
-- Capital inefficient
+### Traditional AMM (V2 Style)
+- Liquidity spread across all prices (0 to ∞)
+- Most capital sits unused
 - Lower fee earnings
+- Simple but inefficient
 
-### Concentrated Liquidity
-- Focus liquidity in specific price ranges
-- Up to 4000x more efficient
-- Higher fee earnings
-- Requires more management
+### Concentrated Liquidity (HX Finance)
+- **Precise Range Selection**: Choose exact price ranges where your liquidity is active
+- **Dynamic Fees**: Fees adjust automatically based on market volatility
+- **Up to 4000x Capital Efficiency**: Concentrate capital where trading happens
+- **Modular Architecture**: Flexible plugin system for advanced features
+- **Active Management**: Reposition as markets move
+
+### How It Works
+- Instead of providing liquidity across all prices, you "zoom in" on specific ranges
+- Example: For WHYPE/USDE at $50, you might provide liquidity only between $40-$60
+- Your capital earns fees only when the price is within your range
+- Outside your range, your position becomes inactive but can be repositioned
 
 ## Step-by-Step Guide
 
@@ -69,25 +77,51 @@ Find your chosen pool and click "Add Liquidity"
 
 ### Step 3: Select Your Price Range
 
-This is the most important decision!
+This is the most important decision in concentrated liquidity!
 
-**Full Range (Easy)**
-- Covers all possible prices
-- No management needed
+**Full Range (Beginner-Friendly)**
+- Covers all possible prices (0 to ∞)
+- Set and forget approach
 - Lower capital efficiency
-- Good for beginners
+- Always earning fees (but diluted)
+- Similar to V2 AMMs
+
+**Concentrated Range (Recommended)**
+- Focus liquidity around current price
+- Much higher fee earnings per dollar
+- Example ranges:
+  - Conservative: ±30% from current price
+  - Moderate: ±20% from current price
+  - Aggressive: ±10% from current price
 
 **Narrow Range (Advanced)**
-- Higher fee earnings
-- Requires monitoring
-- Risk of going out of range
-- Best for active managers
+- Maximum capital efficiency
+- Highest fee potential
+- Requires active monitoring
+- Risk of quickly going out of range
+- Best for experienced LPs
 
-### Step 4: Choose Fee Tier
+**Dynamic Fee Advantage**
+Fees automatically adjust based on:
+- Market volatility
+- Trading volume
+- Price movements
+This means you earn optimal fees without manual intervention!
 
-- **0.05%**: Stable pairs (USDE/USDC)
-- **0.3%**: Most pairs (WHYPE/USDE)
-- **1%**: Exotic/volatile pairs
+### Step 4: Understand Dynamic Fees
+
+Unlike fixed fee tiers, HX Finance uses **dynamic fees** that automatically adjust:
+
+**Base Fee Levels**
+- **0.05%**: Common for most pairs
+- Automatically increases during high volatility
+- Decreases during stable periods
+
+**How Dynamic Fees Benefit You**
+- Higher fees during volatile markets = more earnings
+- Lower fees during calm periods = more volume
+- No need to manually switch fee tiers
+- Optimal fee capture without intervention
 
 ### Step 5: Enter Amounts
 

@@ -4,19 +4,23 @@ All hx.finance smart contracts deployed on Hyperliquid (Chain ID: 999).
 
 ## Core Contracts
 
-### Uniswap V3 Core
-| Contract | Address | Description |
-|----------|---------|-------------|
-| Factory | `0xC414F04a58d1359fc0C48a12ceF2ECF44322A6cC` | Creates new pools |
-| Multicall2 | `0xC41Ff4C0417aB4E3ae562828869CA89d5E1Db604` | Batch transactions |
+### Core Contracts
 
-### Uniswap V3 Periphery
 | Contract | Address | Description |
 |----------|---------|-------------|
-| SwapRouter | `0x27B219f08a4C627c7FC3aad72Da9aA255fF9BFa8` | Execute swaps |
-| NFTDescriptor | `0x528EcDA014Fa28682F821282170bB944adE0a81a` | NFT metadata |
-| NonfungiblePositionManager | `0x3B894223db2f884BC6161e2f149cEb6177C3C100` | LP positions |
-| QuoterV2 | `0x27901f5E149c8043Ae2254E0DEDE44E201c83125` | Quote swaps |
+| Factory | `0x41ba59415eC75AC4242dd157F2a7A282F1e75652` | Creates new pools |
+| PoolDeployer | `0x0d1D2Af74a59A2A0F266fD75Fb081F637c4ec9C2` | Deploys pool contracts |
+| Vault | `0x9ffc63B7f284fA9A8071017b29a594B7e667f5d9` | Manages reserves |
+| Multicall | `0x1094487796e6b8A24A587456Dbac00f13Fc00c8C` | Batch transactions |
+
+### Periphery Contracts
+| Contract | Address | Description |
+|----------|---------|-------------|
+| SwapRouter | `0xCAfDa2b3E5c2B5E30f6d67FEFa5AfFD3f6a93b0a` | Execute swaps |
+| NFTDescriptor | `0x4E34402645f3622355Bc81a646Bd03A443DeF50b` | NFT metadata |
+| NonfungiblePositionManager | `0x578D8A2D07B60b12993559f1DDF90EB2af3eA496` | LP positions |
+| QuoterV2 | `0x6dE3843D846543eEE20F73601ecc3Eb43E1B932b` | Quote swaps |
+| TickLens | `0x6029685D415288F818FefF7345e4980742f79456` | Read tick data |
 
 ### Points System
 | Contract | Address | Description |
@@ -146,14 +150,14 @@ await tx.wait();
 ### Contract Verification
 
 All contracts are verified on Hyperliquid Explorer:
-- [Factory](https://hyperevmscan.io/address/0xC414F04a58d1359fc0C48a12ceF2ECF44322A6cC)
-- [SwapRouter](https://hyperevmscan.io/address/0x27B219f08a4C627c7FC3aad72Da9aA255fF9BFa8)
-- [PositionManager](https://hyperevmscan.io/address/0x3B894223db2f884BC6161e2f149cEb6177C3C100)
+- [Factory](https://hyperevmscan.io/address/0x41ba59415eC75AC4242dd157F2a7A282F1e75652)
+- [SwapRouter](https://hyperevmscan.io/address/0xCAfDa2b3E5c2B5E30f6d67FEFa5AfFD3f6a93b0a)
+- [PositionManager](https://hyperevmscan.io/address/0x578D8A2D07B60b12993559f1DDF90EB2af3eA496)
 
 ## Security
 
 ### Audits
-- Uniswap V3 contracts: Audited by multiple firms
+- Core contracts: Audited by multiple firms
 - Custom contracts: Audit pending
 - Bug bounty program: Coming soon
 
@@ -211,8 +215,8 @@ All contracts are verified on Hyperliquid Explorer:
 
 ## Version Information
 
-- Uniswap V3 Core: 1.0.1
-- Uniswap V3 Periphery: 1.4.4
+- Core Contracts: 1.0.0
+- Periphery Contracts: 1.0.0
 - Custom Contracts: 1.0.0
 - Subgraph: 1.0.0
 
@@ -220,5 +224,5 @@ All contracts are verified on Hyperliquid Explorer:
 
 - [GitHub Repository](https://github.com/hxfinance)
 - [Contract Documentation](https://docs.hx.finance)
-- [Uniswap V3 Docs](https://docs.uniswap.org/contracts/v3/overview)
+- [Technical Documentation](https://docs.hx.finance)
 - [Developer Discord](https://discord.gg/hV54GbXm-dev)
