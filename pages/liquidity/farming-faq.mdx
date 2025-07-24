@@ -1,0 +1,199 @@
+# Farming FAQ
+
+Common questions about yield farming on HX Finance.
+
+## General Questions
+
+### What is the difference between LP fees and farming rewards?
+- **LP Fees**: Earned from every swap in your pool (dynamic fees)
+- **Farming Rewards**: Additional incentives on top of fees
+- Both accumulate simultaneously when farming
+
+### Do I need to stake my LP position to earn fees?
+No. LP positions earn trading fees automatically. Staking in farms adds extra rewards on top of base fees.
+
+### Can I farm with any liquidity position?
+Each farm has specific requirements:
+- Correct token pair
+- Minimum liquidity amount
+- Sometimes specific price ranges
+Check farm details before adding liquidity.
+
+### Are there lock-up periods?
+No. Current farms have no lock-up periods. You can unstake and withdraw liquidity anytime.
+
+## Rewards & Returns
+
+### How are farming rewards calculated?
+```
+Your Share = Your Staked Liquidity / Total Staked Liquidity
+Daily Rewards = Total Daily Rewards × Your Share × Multipliers
+```
+
+### What affects my farming APR?
+1. **Pool TVL**: Lower TVL = higher share of rewards
+2. **Price Range**: Concentrated positions earn more
+3. **Multipliers**: Points tier and pool multipliers
+4. **Token Prices**: Reward token value changes
+
+### When are rewards distributed?
+- Accumulate in real-time (every block)
+- Visible in dashboard immediately
+- Must claim manually to receive
+- No automatic distribution
+
+### Can I see pending rewards before claiming?
+Yes. The farming dashboard shows:
+- Pending rewards in real-time
+- Historical earnings
+- Estimated daily/weekly rates
+- Current APR
+
+## Technical Questions
+
+### What happens if my position goes out of range?
+- Continue earning farming rewards
+- Stop earning trading fees
+- Consider rebalancing for optimal returns
+- No penalty for being out of range
+
+### Can I stake multiple positions in one farm?
+Yes. You can stake multiple LP NFTs in the same farm. Rewards are calculated based on total staked liquidity.
+
+### Do I pay fees on farming rewards?
+- No protocol fees on rewards
+- Standard network gas fees for claiming
+- Consider batching claims to save gas
+
+### How do multipliers work?
+Multipliers stack multiplicatively:
+```
+Base Rewards × Pool Multiplier × Tier Multiplier = Total
+Example: 100 × 3x (pool) × 1.5x (tier) = 450 points
+```
+
+## Strategy Questions
+
+### Should I farm stable or volatile pairs?
+**Stable Pairs**:
+- Lower impermanent loss
+- Predictable returns
+- Good for beginners
+
+**Volatile Pairs**:
+- Higher fees + rewards
+- Higher risk
+- Better for active managers
+
+### What's the best price range for farming?
+Depends on strategy:
+- **Full range**: Safe, lower returns
+- **±20-30%**: Balanced approach
+- **±5-10%**: High returns, needs monitoring
+- Match to your management style
+
+### Should I compound farming rewards?
+Compounding increases returns significantly:
+- Claim rewards weekly/monthly
+- Re-stake in same pool
+- Exponential growth over time
+- Consider gas costs
+
+### How often should I rebalance?
+- **Stable pairs**: Monthly or less
+- **Volatile pairs**: Weekly or when 50% out of range
+- **Active strategy**: Daily monitoring
+- **Gas costs**: Factor into frequency
+
+## Risk Questions
+
+### What are the main risks?
+1. **Impermanent Loss**: Token price divergence
+2. **Out of Range**: Missing fee income
+3. **Reward Token Price**: Value fluctuations
+4. **Smart Contract**: Technical risks
+
+### Can I lose my staked tokens?
+Your LP tokens remain safe:
+- Fully withdrawable anytime
+- No admin control over funds
+- Audited contracts
+- Non-custodial system
+
+### What if farming program ends?
+- Existing positions remain safe
+- Can unstake anytime
+- Still earn trading fees
+- Move to new farms when available
+
+### How do I track performance?
+Use available tools:
+- Dashboard for real-time data
+- Export transaction history
+- Track IL with calculators
+- Monitor total returns (fees + rewards)
+
+## Operational Questions
+
+### Gas costs for farming operations?
+Typical gas costs:
+- Add liquidity: ~$0.50-1.00
+- Stake position: ~$0.20-0.40
+- Claim rewards: ~$0.20-0.40
+- Unstake: ~$0.20-0.40
+
+### Can I transfer staked positions?
+No. You must:
+1. Unstake position first
+2. Transfer LP NFT
+3. New owner can re-stake
+
+### Do rewards expire?
+- Unclaimed rewards don't expire
+- Accumulate until claimed
+- Farm may end but rewards remain claimable
+
+### Mobile farming support?
+Yes. Full functionality on mobile:
+- Add/remove liquidity
+- Stake/unstake positions
+- Claim rewards
+- Monitor performance
+
+## Getting Help
+
+### Where to get farming support?
+- **Discord #farming**: Strategy discussions
+- **Docs**: Detailed guides
+- **Calculator**: Estimate returns
+- **Analytics**: Historical data
+
+### Common issues and solutions?
+
+**"Transaction Failed"**
+- Increase slippage tolerance
+- Check token approvals
+- Verify sufficient gas
+
+**"Cannot Stake Position"**
+- Ensure correct pool
+- Check minimum amounts
+- Verify price range if required
+
+**"Rewards Not Showing"**
+- Refresh page
+- Check if properly staked
+- Verify farm is active
+
+## Best Practices Summary
+
+1. **Start Small**: Test with smaller amounts first
+2. **Understand Risks**: Read all documentation
+3. **Monitor Regularly**: Check positions weekly
+4. **Take Profits**: Claim rewards periodically
+5. **Stay Informed**: Join community discussions
+6. **Track Everything**: For taxes and optimization
+
+---
+
+Still have questions? Join our [Discord](https://discord.gg/hV54GbXm) or read the full [Farming Guide](/liquidity/farming)!

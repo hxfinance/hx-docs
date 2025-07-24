@@ -1,0 +1,166 @@
+# Fee Mechanics
+
+Understanding how dynamic fees work on HX Finance.
+
+## Dynamic Fee System
+
+Unlike traditional AMMs with fixed fee tiers, HX Finance implements dynamic fees that automatically adjust to market conditions.
+
+### How Dynamic Fees Work
+
+1. **Base Fee Level**
+   - Most pools start with a base fee around 0.05%
+   - This represents the minimum fee during stable conditions
+
+2. **Automatic Adjustments**
+   - Fees increase during high volatility periods
+   - Fees decrease during stable market conditions
+   - No manual intervention required
+
+3. **Optimization Logic**
+   - Balances LP returns with trading volume
+   - Higher fees protect LPs during risky periods
+   - Lower fees attract volume during calm markets
+
+## Benefits for Different Users
+
+### For Traders
+- **Lower costs** during stable markets
+- **Fair pricing** that reflects actual market risk
+- **No guessing** which fee tier to use
+- **Transparent** fee display before trades
+
+### For Liquidity Providers
+- **Higher earnings** during volatile periods
+- **Automatic protection** from adverse selection
+- **Optimal fee capture** without manual management
+- **Competitive advantage** over fixed-fee AMMs
+
+### For the Protocol
+- **Efficient markets** with self-balancing incentives
+- **Higher total volume** from optimal fee levels
+- **Better LP retention** through fair compensation
+
+## Fee Distribution
+
+### Where Fees Go
+```
+Trading Fee
+    └── 100% to Liquidity Providers
+         └── Distributed pro-rata based on:
+              - Share of liquidity in range
+              - Time price spent in range
+```
+
+### Fee Collection
+- Fees accumulate in the position
+- Can be collected anytime
+- No automatic distribution
+- Gas-efficient batch collection
+
+## Comparing Fee Models
+
+| Feature | Fixed Fees (Traditional) | Dynamic Fees (HX Finance) |
+|---------|-------------------------|---------------------------|
+| Stable market fees | Same as volatile | Lower (optimized) |
+| Volatile market fees | Same as stable | Higher (protection) |
+| LP returns | Suboptimal | Maximized |
+| Trader costs | Fixed regardless | Market-appropriate |
+| Management needed | Choose tier manually | Fully automatic |
+
+## Real-World Examples
+
+### Stable Market Scenario
+```
+USDE/USDC pair during calm period:
+- Traditional AMM: 0.05% fixed
+- HX Finance: 0.04% (dynamically lowered)
+- Benefit: More volume, competitive rates
+```
+
+### Volatile Market Scenario
+```
+WHYPE/USDE during price discovery:
+- Traditional AMM: 0.3% fixed
+- HX Finance: 0.45% (dynamically increased)
+- Benefit: LPs protected from impermanent loss
+```
+
+### Multi-Market Arbitrage
+```
+Cross-DEX arbitrage opportunity:
+- Other DEX: 0.3% fixed fee
+- HX Finance: 0.05% current fee
+- Result: Arbitrageurs choose HX, increasing volume
+```
+
+## Fee Monitoring
+
+### For Traders
+1. Check current fee before swapping
+2. Displayed in swap interface
+3. Included in price impact calculation
+4. Historical fee data available
+
+### For LPs
+1. Monitor fee trends in analytics
+2. Higher fees = higher APY
+3. Position in volatile pools for maximum fees
+4. Track cumulative fee earnings
+
+## Technical Implementation
+
+### Fee Calculation
+```javascript
+// Simplified logic
+currentFee = baseFee * volatilityMultiplier
+
+where:
+- baseFee = pool's minimum fee
+- volatilityMultiplier = calculated from:
+  - Recent price movements
+  - Trading volume
+  - Time-weighted volatility
+```
+
+### Fee Bounds
+- Minimum: ~0.01% (ultra-stable pairs)
+- Maximum: ~1% (extreme volatility)
+- Most common: 0.04% - 0.1%
+
+## Frequently Asked Questions
+
+**Q: Can I predict future fees?**
+A: While exact fees can't be predicted, you can expect:
+- Lower fees during Asian/weekend sessions
+- Higher fees during major news events
+- Stable fees for correlated pairs
+
+**Q: Do all pools have dynamic fees?**
+A: Yes, all HX Finance pools use the dynamic fee mechanism.
+
+**Q: How often do fees change?**
+A: Fees can adjust with each block based on market conditions, but significant changes typically occur over minutes/hours, not seconds.
+
+**Q: Can fees be manipulated?**
+A: The algorithm is designed to resist manipulation, using time-weighted metrics and multiple data points.
+
+## Best Practices
+
+### For Optimal Trading
+- Trade during stable periods for lowest fees
+- Check fee trends in analytics
+- Consider fee impact for large trades
+- Use limit orders during high-fee periods
+
+### For Maximum LP Returns
+- Provide liquidity to volatile pairs
+- Monitor fee APY trends
+- Compound fee earnings regularly
+- Position ranges to capture fee spikes
+
+## Next Steps
+
+- [Become a Liquidity Provider](/liquidity/becoming-lp)
+- [View Current Pool Fees](https://app.hx.finance/pools)
+- [Read Technical Docs](/technical/smart-contracts)

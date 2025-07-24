@@ -1,0 +1,117 @@
+# Glossary
+
+Key terms and concepts used throughout HX Finance.
+
+## Core Concepts
+
+### AMM (Automated Market Maker)
+A decentralized exchange protocol that uses smart contracts to create liquidity pools and enable trading without traditional order books.
+
+### Concentrated Liquidity
+The ability to provide liquidity within specific price ranges rather than across all possible prices, dramatically increasing capital efficiency.
+
+### Dynamic Fees
+Fees that automatically adjust based on market conditions, volatility, and trading volume - no manual tier selection needed.
+
+### Liquidity Pool
+A smart contract containing reserves of two tokens that traders can swap between. Liquidity providers earn fees from trades.
+
+### Price Range
+The upper and lower price bounds within which a liquidity position is active and earning fees.
+
+### Tick
+The smallest unit of price movement in concentrated liquidity. Each tick represents a 0.01% (1 basis point) price change.
+
+## Positions & Trading
+
+### In-Range Position
+A liquidity position where the current market price falls within the position's selected price range, actively earning fees.
+
+### Out-of-Range Position
+A liquidity position where the current price has moved outside the selected range. The position stops earning fees but can be repositioned.
+
+### Price Impact
+The change in token price caused by a trade. Larger trades relative to pool liquidity cause higher price impact.
+
+### Slippage
+The difference between expected and executed price due to market movements between transaction submission and execution.
+
+### TWAP (Time-Weighted Average Price)
+An oracle mechanism that provides the average price over a specific time period, resistant to manipulation.
+
+## Liquidity Provision
+
+### LP (Liquidity Provider)
+Users who deposit token pairs into pools to facilitate trading and earn fees.
+
+### LP Token/NFT
+A non-fungible token representing ownership of a specific liquidity position with defined parameters.
+
+### Impermanent Loss
+The difference in value between holding tokens in a liquidity pool versus holding them directly, caused by price movements.
+
+### Capital Efficiency
+The ratio of effective liquidity to total capital deployed. Concentrated liquidity can be up to 4000x more capital efficient.
+
+### Range Order
+Using a narrow liquidity range as a limit order - the position converts from one token to another as price crosses the range.
+
+## HX Finance Specific
+
+### HXP
+On-chain points token that mirrors standard points 1:1, providing blockchain verification and potential future tradability.
+
+### Points Multiplier
+Tier-based bonuses that multiply all points earned, ranging from 1.0x (Bronze) to 2.0x (Diamond).
+
+### WHYPE
+Wrapped HYPE token (ERC-20 compatible version of native HYPE) used for trading in pools.
+
+### Base Tokens
+Core tokens used for routing: WHYPE, USDE, UETH, UBTC, and others that form trading pair foundations.
+
+## Technical Terms
+
+### Factory Contract
+Smart contract responsible for deploying new trading pools with consistent parameters.
+
+### Router Contract
+Smart contract that finds optimal trading paths and executes swaps across one or multiple pools.
+
+### Position Manager
+Smart contract (NFT manager) that handles the creation, modification, and tracking of liquidity positions.
+
+### Tick Spacing
+The minimum distance between initialized ticks in a pool, affecting position granularity and gas costs.
+
+### Sqrt Price
+Square root of the price ratio used internally for calculations, enabling efficient math operations.
+
+## Fee Terms
+
+### Base Fee
+The starting fee level for a pool before dynamic adjustments.
+
+### Fee Tier (Legacy)
+Fixed fee levels used in older AMM versions (0.05%, 0.3%, 1%). HX Finance uses dynamic fees instead.
+
+### Protocol Fee
+Optional fee that can be activated by governance, separate from LP fees.
+
+### Fee APY
+Annualized percentage yield from trading fees, calculated based on 24h or 7d fee generation.
+
+## Safety Terms
+
+### Allowance
+Permission given to a smart contract to spend tokens on your behalf, required before swaps or liquidity provision.
+
+### Deadline
+Transaction expiration time to prevent execution during unfavorable conditions.
+
+### Minimum Output
+The minimum tokens you'll accept from a swap, protecting against excessive slippage.
+
+## Getting Help
+
+Still have questions? Visit our [FAQ](/troubleshooting/faq) or join our [Discord](https://discord.gg/hV54GbXm) community!
