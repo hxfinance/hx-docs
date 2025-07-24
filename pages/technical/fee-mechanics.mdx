@@ -132,18 +132,16 @@ where:
   - Time-weighted volatility
 ```
 
-### Fee Bounds
-- Minimum: ~0.01% (ultra-stable pairs)
-- Maximum: ~1% (extreme volatility)
-- Most common: 0.04% - 0.1%
+### Fee Range
+- Dynamic fees adjust automatically
+- Starting from base fee of 0.05%
+- Increases during high volatility
+- Exact bounds depend on market conditions
 
 ## Frequently Asked Questions
 
 **Q: Can I predict future fees?**
-A: While exact fees can't be predicted, you can expect:
-- Lower fees during Asian/weekend sessions
-- Higher fees during major news events
-- Stable fees for correlated pairs
+A: Fees adjust based on real-time market conditions and volatility. While exact fees can't be predicted, highly correlated pairs tend to have more stable fees than volatile pairs.
 
 **Q: Do all pools have dynamic fees?**
 A: Yes, all HX Finance pools use the dynamic fee mechanism.
