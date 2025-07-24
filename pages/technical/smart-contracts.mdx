@@ -43,17 +43,17 @@ All hx.finance smart contracts deployed on Hyperliquid (Chain ID: 999).
 ## Active Liquidity Pools
 
 ### Major Pools with Points Multipliers
-| Pool | Address | Fee Tier | Points Multiplier | Liquidity |
-|------|---------|----------|-------------------|-----------|
-| WHYPE/USDe | `0x59544154B152B8C8FD2488bFF41c1E2215B1B1eD` | 0.3% | 3x | Active |
-| USDe/UBTC | `0xB65C69fD8339Fb70ef7201d9C96B968519D7F21E` | 0.3% | 2.5x | Active |
-| BUDDY/USDe | `0xdf18bA1C935e1bf943696Da9312bAD2d3B652441` | 0.3% | 2x | Active |
-| LHYPE/USDe | `0x9ba8d33c4DE40c6CbAef13dC2468990F10Ddf038` | 0.3% | 2x | Active |
+| Pool | Address | Fee | Points Multiplier | Liquidity |
+|------|---------|-----|-------------------|-----------| 
+| WHYPE/USDe | `0x59544154B152B8C8FD2488bFF41c1E2215B1B1eD` | Dynamic | 3x | Active |
+| USDe/UBTC | `0xB65C69fD8339Fb70ef7201d9C96B968519D7F21E` | Dynamic | 2.5x | Active |
+| BUDDY/USDe | `0xdf18bA1C935e1bf943696Da9312bAD2d3B652441` | Dynamic | 2x | Active |
+| LHYPE/USDe | `0x9ba8d33c4DE40c6CbAef13dC2468990F10Ddf038` | Dynamic | 2x | Active |
 
 ### Additional Pools
-| Pool | Address | Fee Tier | Status |
-|------|---------|----------|--------|
-| USDe/UETH | `0x5b7eaD40334D20294c0a245177d77B78e5193514` | 0.3% | Active |
+| Pool | Address | Fee | Status |
+|------|---------|-----|--------|
+| USDe/UETH | `0x5b7eaD40334D20294c0a245177d77B78e5193514` | Dynamic | Active |
 
 ## Integration Guide
 
@@ -90,7 +90,6 @@ await tokenContract.approve(ROUTER_ADDRESS, amountIn);
 const params = {
   tokenIn: TOKEN_IN,
   tokenOut: TOKEN_OUT,
-  fee: 3000, // 0.3%
   recipient: userAddress,
   deadline: Math.floor(Date.now() / 1000) + 60 * 20,
   amountIn: amountIn,

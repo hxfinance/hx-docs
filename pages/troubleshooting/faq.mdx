@@ -5,7 +5,7 @@ Comprehensive answers to common questions about hx.finance.
 ## General Questions
 
 ### What is hx.finance?
-hx.finance is a community-owned decentralized exchange on Hyperliquid. Built on Uniswap V3 technology, it offers efficient trading with low fees and a fair launch model where 33% of tokens are distributed to the community.
+hx.finance is a community-owned decentralized exchange on Hyperliquid. Built on advanced concentrated liquidity AMM technology, it offers efficient trading with low fees and a fair launch model where 33% of tokens are distributed to the community.
 
 ### Why use hx.finance?
 - **Fast execution** - Hyperliquid's high-performance infrastructure
@@ -15,7 +15,7 @@ hx.finance is a community-owned decentralized exchange on Hyperliquid. Built on 
 - **Ecosystem integration** - Privacy features and mobile apps in development
 
 ### Is it safe?
-Yes. The platform uses audited Uniswap V3 contracts with non-custodial architecture, meaning you maintain control of your funds at all times. The code is open source and verifiable.
+Yes. The platform uses audited smart contracts with non-custodial architecture, meaning you maintain control of your funds at all times. The code is open source and verifiable.
 
 ### Which wallets are supported?
 All EVM-compatible wallets are supported, including Rabby, WalletConnect, Rainbow, Coinbase Wallet, MetaMask, and Trust Wallet.
@@ -35,10 +35,11 @@ Currently supported tokens:
 Additional tokens will be added based on community demand.
 
 ### What are the fees?
-Trading fees vary by pool:
-- **0.05%** for stable pairs (e.g., USDE/USDC)
-- **0.3%** for standard pairs
-- **1%** for volatile pairs
+HX Finance uses dynamic fees that automatically adjust:
+- **Base fee**: Typically 0.05% for most pairs
+- **Automatic adjustment**: Increases during high volatility
+- **No manual selection**: Fees optimize automatically
+- **Transparent**: Current fee shown before each trade
 
 All fees are distributed to liquidity providers.
 
@@ -85,6 +86,15 @@ Simple:
 ### When will the token launch?
 The hx.finance token generation event (TGE) date will be announced 30 days in advance through official channels.
 
+### What is HXP?
+HXP is our on-chain points token that runs parallel to standard points:
+- **1:1 ratio** with standard points
+- **Automatically minted** as you earn
+- **Blockchain verified** for transparency
+- **May become tradeable** in the future
+
+Both HXP and standard points convert equally to hx.finance tokens at TGE.
+
 ### Can I buy points?
 No. Points can only be earned through platform usage, ensuring fair distribution.
 
@@ -106,7 +116,7 @@ Symbol: HYPE
 
 ### Is there an API?
 Yes. Subgraph endpoint:
-`https://api.goldsky.com/api/public/project_cmay1j7dh90w601r2hjv26a5b/subgraphs/moonswap-v3/hyperevm/gn`
+`https://api.goldsky.com/api/public/project_cmay1j7dh90w601r2hjv26a5b/subgraphs/hx-hyperevm/gn`
 
 ### Where is the code?
 The repository will be made public on GitHub soon.
@@ -173,7 +183,7 @@ Report the incident in Discord to help protect others. Note that blockchain tran
 
 **Token contract?** Will be published at TGE
 
-**Audited?** Using audited Uniswap V3 contracts; custom contracts under review
+**Audited?** Using audited AMM contracts; custom contracts under review
 
 **Hiring?** Open positions available - contact via Discord
 
