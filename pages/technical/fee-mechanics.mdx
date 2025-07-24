@@ -46,11 +46,20 @@ Unlike traditional AMMs with fixed fee tiers, HX Finance implements dynamic fees
 ### Where Fees Go
 ```
 Trading Fee
-    └── 100% to Liquidity Providers
-         └── Distributed pro-rata based on:
-              - Share of liquidity in range
-              - Time price spent in range
+    ├── 87% to Liquidity Providers
+    │   └── Distributed pro-rata based on:
+    │        - Share of liquidity in range
+    │        - Time price spent in range
+    ├── 8% to HX Finance Protocol
+    └── 5% to Infrastructure Provider
 ```
+
+### Protocol Fee Usage
+The 8% protocol fee supports:
+- Platform development
+- Security audits
+- Community incentives
+- Operational costs
 
 ### Fee Collection
 - Fees accumulate in the position
