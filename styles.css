@@ -1,4 +1,143 @@
-/* Global styles for hx.finance documentation */
+/* Global styles for hx.finance documentation - CLEAN VERSION */
 
-/* Custom styling can be added here if needed */
-/* Nextra provides most styling out of the box */
+:root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 60%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 0 0% 0%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 0%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 80 100% 70%;
+    --accent-foreground: 168 50% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 0 0% 60%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 60%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 0 0% 5%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 0%;
+    --sidebar-ring: 0 0% 60%;
+}
+
+.dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 60%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 0 0% 0%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 0%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 80 100% 70%;
+    --accent-foreground: 168 50% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 0 0% 60%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 60%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 0 0% 5%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 0%;
+    --sidebar-ring: 0 0% 60%;
+}
+
+/* Headings with accent color */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: hsl(var(--accent)) !important;
+}
+
+/* Text color */
+p,
+span,
+div,
+a {
+    color: hsl(var(--foreground)) !important;
+}
+
+/* Nextra specific overrides */
+.nextra-nav-container,
+.nextra-sidebar,
+.nextra-content,
+.nextra-toc,
+main,
+article,
+section {
+    background-color: black !important;
+    border-color: black !important;
+}
+
+/* Sidebar specific */
+.nextra-sidebar,
+.nextra-sidebar *,
+.nextra-sidebar div,
+.nextra-sidebar section,
+.nextra-sidebar footer,
+.nextra-sidebar button,
+.nextra-sidebar a {
+    background-color: black !important;
+    border-color: black !important;
+}
+
+/* Active sidebar items */
+.nextra-sidebar .nextra-sidebar-menu .nextra-sidebar-menu-item[data-active],
+.nextra-sidebar .nextra-sidebar-menu .nextra-sidebar-menu-item[data-active]>a {
+    background-color: hsl(var(--sidebar-accent)) !important;
+    color: hsl(var(--primary)) !important;
+}
+
+/* Hover states */
+.nextra-sidebar a:hover {
+    background-color: hsl(var(--sidebar-accent)) !important;
+    color: hsl(var(--primary)) !important;
+}
+
+/* Buttons */
+button[aria-hidden="true"] {
+    color: hsl(var(--accent)) !important;
+    background-color: black !important;
+}
+
+button[aria-hidden="true"]:hover {
+    color: hsl(var(--accent)) !important;
+    background-color: hsl(var(--sidebar-accent)) !important;
+}
+
+
+:is(html[class~=dark] .dark\:nx-bg-primary-400\/10) {
+    background-color: hsl(var(--sidebar-background)) !important;
+}
+
+
+:is(html[class~=dark] .dark\:nx-bg-neutral-900) {
+    background-color: hsl(var(--sidebar-background)) !important;
+}
+
+
+
+:is(html[class~=dark] .dark\:nx-bg-dark) {
+    background-color: transparent !important;
+}
